@@ -1,0 +1,103 @@
+﻿@model IEnumerable<OnlineBorrow1.Models.Advice>
+@{
+    ViewBag.Title = "留言板";
+    
+}
+
+<link href="@Url.Content("~/assets/bootstrap/css/bootstrap.css")" rel="stylesheet">
+<link href="@Url.Content("~/assets/css/style_advice.css")" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="@Url.Content("~/assets/css/chocolat.css")"type="text/css">
+
+
+
+
+<div class="container" style="background-color:white">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <img src ="@Url.Content("~/Images/advice.jpg")"  style="width:100%" />
+			<ul class="pagination pagination-lg">
+				<li>
+					 <a href="#">前一页</a>
+				</li>
+				<li>
+					 <a href="~/Advice/Advice?pages=1">1</a>
+				</li>
+				<li>
+					 <a href="~/Advice/Advice?pages=2">2</a>
+				</li>
+				<li>
+					 <a href="~/Advice/Advice?pages=3">3</a>
+				</li>
+				<li>
+					 <a href="~/Advice/Advice?pages=4">4</a>
+				</li>
+				<li>
+					 <a href="~/Advice/Advice?pages=5">5</a>
+				</li>
+				<li>
+					 <a href="#">下一页</a>
+				</li>
+			</ul>
+	
+            <table class="table table-bordered">
+                <tbody>
+                    @if (Model == null || Model.Count() == 0)
+                    {
+                        <tr>
+                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd">
+                                <p>还没有任何留言，快来抢车位吧。 <span style="float: right">2016.10.17</span></p>
+
+                            </td>
+                        </tr>
+                    }
+
+                    else
+                    {
+                        int i = 1;
+                        foreach (var item in Model)
+                        {
+                        <tr>
+                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd">
+                                <p>@(i++)# <span style="float: right">@item.time</span></p>
+                                <p><b>姓名：</b>@item.name</p>
+                                <p><b>内容：</b>@item.内容</p>
+
+                            </td>
+                        </tr>
+                            
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="contact" class="get-in-touch">
+    <div class="container" style="background-color:white">
+        <div class="get-info text-center">
+            <h3>建议</h3>
+        </div>
+    </div>
+</div>
+
+<div class="contact-us">
+    <div class="container" style="background-color:white">
+
+        <div class="col-md-12 column">
+            <div class="contact-info">
+                <form action="@Url.Content("~/Advice/SaveAdvice")" method="post">
+                    <input type="text" name="name" id="name" placeholder="Your Name" required>
+                    <input type="text" name="phone" id="phone" placeholder="Your Phone" required>
+                    <input type="text" name="title" id="title" placeholder="Your Title" required>
+                    <textarea name="content" id="content" placeholder="Your Message" required></textarea>
+                    <input type="submit" value="发送">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

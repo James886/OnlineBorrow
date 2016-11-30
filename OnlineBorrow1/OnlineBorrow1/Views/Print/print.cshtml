@@ -1,0 +1,186 @@
+﻿@model IEnumerable<OnlineBorrow1.Models.borrowInformation>
+@{
+    ViewBag.Title = "申请打印";
+}
+
+
+
+<script type="text/javascript">
+///***********************
+///打印指定区域页面
+///说明：obj–通过getElementById或其它方式获取标签标识，打印此obj内的文字
+///开发：王洪剑
+///日期：2009-8-7
+    function preview(oper)
+    {
+        if (oper < 10){
+            bdhtml=window.document.body.innerHTML;//获取当前页的html代码
+            sprnstr="<!--startprint"+oper+"-->";//设置打印开始区域
+            eprnstr="<!--endprint"+oper+"-->";//设置打印结束区域
+            prnhtml=bdhtml.substring(bdhtml.indexOf(sprnstr)+18); //从开始代码向后取html
+
+            prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));//从结束代码向前取html
+            window.document.body.innerHTML=prnhtml;
+            window.print();
+            window.document.body.innerHTML=bdhtml;
+
+
+        } else {
+    window.print();
+    }
+
+    }
+</script>
+
+
+<style>
+    td { 
+        font-size:18.7px;
+        border: 1px solid black!important;
+    }
+    table { 
+        border-radius:2px;
+        border-width:2px;
+        border-color:black;
+    }
+    </style>
+  
+<div class="container" style="background-color:white" id="content">
+    <div class="row clearfix">
+         <!--startprint1--> 
+        <div class="col-md-12 column">
+            @foreach(var item in Model)
+            {
+                 <form action="@Url.Content("~/borrowInformation/Update1")" method="post">
+                    <table class="table table-bordered table-hover " style="border-radius: inherit;border-color:black;">
+                        <caption style="text-align: center; font-size: 30px; color: black; font-weight: bolder">
+                            青海大学计算机技术与应用系教学机房借用审批表<br />
+                            2016 —— 2017学年度 第一学期      
+                        </caption>
+                        <tbody>
+                            <tr>
+                                
+                                <td class="col-md-2" style="text-align:center;" >单位名称
+                                </td>
+                                
+                                <td  class="col-md-2" style="text-align:center">
+                                    @item.单位名称
+                                </td>
+                                <td class="col-md-2" style="text-align:center" >
+                                    借用人
+                                </td>
+                                <td class="col-md-2" style="text-align:center" >
+                                    @item.借用人
+                                </td>
+                                <td class="col-md-2" style="text-align:center" >
+                                    联系电话
+                                </td>
+                                <td class="col-md-2" style="text-align:center" >
+                                    @item.联系电话
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-2" style="text-align:center" >
+                                    <div style="padding-top:7px;"> 借用人身份</div>
+                                </td>
+                                <td class="col-md-2" style="text-align:center" >
+                                   <div style="padding-top:7px;">  @item.借用人身份</div>
+                                </td>
+                                <td class="col-md-2" style="text-align:center" >
+                                    所在班级<br />
+                                    (学生填写)
+                                </td>
+                               <td class="col-md-2" style="text-align:center" >
+                                   <div style="padding-top:7px;">  @item.所在班级</div>
+                                </td >
+                                <td style="text-align:center">
+                                    学号<br />
+                                    (学生填写)
+                                </td>
+                                <td style="text-align:center">
+                                    <div style="padding-top:7px;"> @item.学号</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2" style="text-align:center">借用机房<br />
+                                    目的及<br />
+                                    具体内容
+                                </td>
+                                <td style="text-align:center;padding-top:5px;">用途
+                                </td>
+                                <td colspan="2" style="text-align:center">
+                                    @item.用途
+                                </td>
+                                <td style="text-align:center">其他
+                                </td>
+                                <td style="text-align:center">
+                                    @item.其它
+                                </td>
+                            </tr>
+                            <tr style="height:100px;">
+                                <td style="text-align:center">具体内容<br />
+                                    描述<br />
+                                </td>
+                                <td colspan="4" style="text-align:center;">
+                                   <div style="padding-top:7px;"> @item.具体内容描述</div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="text-align:center">借用机房
+                                </td>
+                                <td colspan="2" style="text-align:center">
+                                    @item.借用机房
+                                </td>
+                                <td style="text-align:center">借用时间
+                                </td>
+                                <td colspan="2" style="text-align:center">
+                                    @item.借用具体时间始----@item.借用具体时间终
+                                </td>
+                            </tr>
+                            <tr style="height:150px;">
+                                <td colspan="6" style="text-align:center"> <div style="text-align:left">系实验室管理部负责人意见：</div>
+                                <div style="text-align:center"> @item.负责人意见</div>
+                                      <div style="padding-top:80px;text-align:right;padding-right:200px;">负责人签字：</div>
+                                </td>
+                            </tr >
+                            <tr style="height:150px;">
+                                <td colspan="6" style="text-align:center"> <div style="text-align:left">院系意见：</div>
+                                    <div style="text-align:center"> @item.系领导意见</div>
+                                     <div style="padding-top:80px;text-align:right;padding-right:200px;">系领导签字：</div>
+                                </td>
+                                
+                                  
+                               
+                               
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+
+                </form>
+            }
+            
+        </div>
+
+
+        <h3>备注:</h3>
+        <ol>
+            <li>此申请表由借用人如实逐项填写，报计算机系实验室管理部审批（补课以及党团、班级、学生会、腾讯俱乐部、辩论赛等活动借用情况只需系实验室管理部审核，如遇承办考试、竞赛、讲座、培训、项目活动等特殊情况需报系领导审批）；审批通过后，持本表到计算机系楼门卫处领取相应机房的钥匙；
+            </li>
+            <li>教室借用，必须遵守计算机系教学机房管理规定，违反规定者，将取消其使用资格，性质严重者，将上报系里处理；
+            </li>
+            <li>未办理教室借用手续或擅自延长使用者，一经发现，将承担相关责任；
+            </li>
+            <li>教室用毕，须将桌椅恢复原位，保持室内清洁。
+            </li>
+
+        </ol>
+        <p style="text-align: right">系教学实验室联系人：杜正君（13897408428）</p>
+    </div>
+    <!--endprint1-->
+    <a href="#" class="btn btn-primary btn-lg" style="float: right"  onclick=preview(1) >打印</a>
+</div>
+
+

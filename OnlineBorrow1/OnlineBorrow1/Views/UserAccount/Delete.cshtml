@@ -1,0 +1,39 @@
+﻿@model OnlineBorrow1.Models.User
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="container" style="background-color: white">
+    <div class="row clearfix">
+
+        <div class="col-md-12 column">
+
+<h3>你确定删除这个用户吗?</h3>
+<fieldset>
+    <legend></legend>
+
+    <div class="display-label">
+        <p>用户</p>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.username)
+    </div>
+
+    <div class="display-label">
+         <p>密码</p>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.password)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="删除" /> |
+        @Html.ActionLink("返回", "Index")
+    </p>
+}
+
+            </div>
+        </div>
+    </div>

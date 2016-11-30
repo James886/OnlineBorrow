@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineBorrow1", "OnlineBorrow1\OnlineBorrow1.csproj", "{28C1E834-FB4C-458A-91F3-396887F6A8F5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{28C1E834-FB4C-458A-91F3-396887F6A8F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28C1E834-FB4C-458A-91F3-396887F6A8F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28C1E834-FB4C-458A-91F3-396887F6A8F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28C1E834-FB4C-458A-91F3-396887F6A8F5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

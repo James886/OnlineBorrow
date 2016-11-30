@@ -1,0 +1,224 @@
+﻿@model IEnumerable<OnlineBorrow1.Models.borrowInformation>
+@{
+    ViewBag.Title = "申请审核的状态";
+   
+}
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width" />
+
+
+<link href="@Url.Content("~/assets/bootstrap/css/bootstrap.css")" rel="stylesheet">
+<link href="@Url.Content("~/assets/css/style_advice.css")" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="@Url.Content("~/assets/css/chocolat.css")"type="text/css">
+
+
+<div class="container" style="background-color:white">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+           <div class="jumbotron" style="margin-top:0px">
+                <h1>温馨提示！！！
+                </h1>
+                <p>
+                    请在机房使用完后,桌椅恢复原位,做好机房的卫生工作
+                </p>
+            </div>
+            <ul class="pagination" style="float: left; margin-top: 0px; padding-top: 0px;">
+
+                <li>
+                    <a href="~/borrowInformation/requestCondition?informationCategory=0">还未审核</a>
+                </li>
+                <li>
+                    <a href="~/borrowInformation/requestCondition?informationCategory=1">审核通过</a>
+                </li>
+                <li>
+                    <a href="~/borrowInformation/requestCondition?informationCategory=2">我的全部申请</a>
+                </li>
+            </ul>
+            <table class="table table-bordered">
+                <tr>
+
+                    <th class="col-md-1" style="text-align: center;">
+                        <b>单位名称</b>
+                    </th>
+                    <th class="col-md-1" style="text-align: center;">
+                        <b>借用人</b>
+                    </th>
+                    <th class="col-md-1" style="text-align: center;">
+                        <b>借用人身份</b>
+                    </th>
+                    <th class="col-md-1" style="text-align: center;">
+                        <b>借用机房</b>
+                    </th>
+                    <th class="col-md-2" style="text-align: center;">
+                        <b>用途</b>
+                    </th>
+                    <th class="col-md-2" style="text-align: center;">
+                        <b>提交时间</b>
+                    </th>
+                    <th class="col-md-2" style="text-align: center;" >
+                        <b>审核状态</b>
+                    </th>
+                    <th class="col-md-1" style="text-align: center;" >
+                        <b>能否打印</b>
+                    </th>
+                    
+                </tr>
+                <tbody>
+
+                    @if (Model == null || Model.Count() == 0)
+                    {
+                        <tr>
+                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd" colspan="9">
+                                <p>还没有提交任何申请！！！或  你的全部申请都已通过！！！<span style="float: right">2016.10.17</span></p>
+
+                            </td>
+                        </tr>
+                    }
+
+                    else
+                    {
+
+                        foreach (var item in Model)
+                        {
+                            if (@item.informationCategory == 0)
+                            {
+                        <tr class="warning">
+
+                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
+                                <div style="padding-top: 5px">
+                                    <p>@item.单位名称</p>
+                                </div>
+                            </td>
+                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
+                                <div style="padding-top: 5px">
+                                    <p>@item.借用人</p>
+                                </div>
+                            </td>
+                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
+                                <div style="padding-top: 5px">
+                                    <p>@item.借用人身份</p>
+                                </div>
+                            </td>
+                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
+                                <div style="padding-top: 5px">
+                                    <p>@item.借用机房</p>
+                                </div>
+                            </td>
+                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
+                                <div style="padding-top: 5px">
+                                    <p>
+
+                                        @if (@item.用途 != null)
+                                        {
+                                            @item.用途
+                                        }
+                                        else
+                                        {
+                                            @item.其它
+                                        }
+                                    </p>
+                                </div>
+                            </td>
+
+                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
+                                <p><span style="float: right">@item.提交时间</span></p>
+                            </td>
+                           
+                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
+                                @if (@item.informationCategory == 0)
+                                {
+                                    <a href="#">还未审核</a>
+                                }
+                                else
+                                {
+                                    <a href="#">审核通过</a>
+                                }
+                            </td>
+                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
+                                @if (@item.informationCategory == 0)
+                                {
+                                    <p>不能打印</p>
+                                }
+                                else
+                                {
+                                    <a href="~/Print/print?information_id=@item.information_id" target="_blank">可以打印</a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                                 <tr class="success">
+
+                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
+                                <div style="padding-top: 5px">
+                                    <p>@item.单位名称</p>
+                                </div>
+                            </td>
+                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
+                                <div style="padding-top: 5px">
+                                    <p>@item.借用人</p>
+                                </div>
+                            </td>
+                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
+                                <div style="padding-top: 5px">
+                                    <p>@item.借用人身份</p>
+                                </div>
+                            </td>
+                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
+                                <div style="padding-top: 5px">
+                                    <p>@item.借用机房</p>
+                                </div>
+                            </td>
+                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
+                                <div style="padding-top: 5px">
+                                    <p>
+
+                                        @if (@item.用途 != null)
+                                        {
+                                            @item.用途
+                                        }
+                                        else
+                                        {
+                                            @item.其它
+                                        }
+                                    </p>
+                                </div>
+                            </td>
+
+                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
+                                <p><span style="float: right">@item.提交时间</span></p>
+                            </td>
+                           
+                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
+                                @if (@item.informationCategory == 0)
+                                {
+                                    <a href="#">还未审核</a>
+                                }
+                                else
+                                {
+                                    <a href="#">审核通过</a>
+                                }
+                            </td>
+                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
+                                @if (@item.informationCategory == 0)
+                                {
+                                    <p>不能打印</p>
+                                }
+                                else
+                                {
+                                    <a href="~/Print/print?information_id=@item.information_id" target="_blank">可以打印</a>
+                                }
+                            </td>
+                        </tr>
+                            }
+                            
+                        }
+                    }
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+</div>
