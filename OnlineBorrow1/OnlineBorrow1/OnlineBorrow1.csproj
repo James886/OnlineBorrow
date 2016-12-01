@@ -146,9 +146,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\borrowInformation.cs" />
-    <Compile Include="Models\Excel.cs" />
     <Compile Include="Models\lookSchedule.cs" />
     <Compile Include="Models\lookScheduleContext.cs" />
+    <Compile Include="Models\Paging.cs" />
     <Compile Include="Models\schedule.cs" />
     <Compile Include="Models\scheduleContext.cs" />
     <Compile Include="Models\User.cs" />

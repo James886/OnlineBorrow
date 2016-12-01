@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using OnlineBorrow1.Models;
 
+
 namespace OnlineBorrow1.Controllers
 {
     
@@ -20,9 +21,18 @@ namespace OnlineBorrow1.Controllers
         {
 
             AdviceContext adviceContext = new AdviceContext();
+            /*
             List<Advice> advices = (from item in adviceContext.advices.ToList()
                                     orderby item.time descending
                                     select item).ToList();
+             * */
+            IEnumerable<Advice> advices_ = from item in adviceContext.advices
+                                           orderby item.time descending
+                                           select item;
+
+            Paging paging = new Paging(advices_,6,3,pages);
+            return View(paging);
+            /*
             int a = advices.Count;
             a = (a / 10) + 1;
             List<Advice> advice = new List<Advice>();
@@ -41,6 +51,7 @@ namespace OnlineBorrow1.Controllers
                 }
             }
             return View(advice);
+             * */
         }
 
 

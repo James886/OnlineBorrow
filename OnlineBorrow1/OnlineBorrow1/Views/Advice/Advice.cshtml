@@ -1,5 +1,7 @@
-﻿@model IEnumerable<OnlineBorrow1.Models.Advice>
+﻿@using OnlineBorrow1.Models;
+@model Paging
 @{
+    List<Advice> curr_page_data = (List<Advice>)Model.curr_page_data;
     ViewBag.Title = "留言板";
     
 }
@@ -8,75 +10,77 @@
 <link href="@Url.Content("~/assets/css/style_advice.css")" rel="stylesheet" type="text/css" media="all" />
 <link rel="stylesheet" href="@Url.Content("~/assets/css/chocolat.css")"type="text/css">
 
-
-
-
-<div class="container" style="background-color:white">
+<div class="container" style="background-color: white">
     <div class="row clearfix">
         <div class="col-md-12 column">
             <img src ="@Url.Content("~/Images/advice.jpg")"  style="width:100%" />
-			<ul class="pagination pagination-lg">
-				<li>
-					 <a href="#">前一页</a>
-				</li>
-				<li>
-					 <a href="~/Advice/Advice?pages=1">1</a>
-				</li>
-				<li>
-					 <a href="~/Advice/Advice?pages=2">2</a>
-				</li>
-				<li>
-					 <a href="~/Advice/Advice?pages=3">3</a>
-				</li>
-				<li>
-					 <a href="~/Advice/Advice?pages=4">4</a>
-				</li>
-				<li>
-					 <a href="~/Advice/Advice?pages=5">5</a>
-				</li>
-				<li>
-					 <a href="#">下一页</a>
-				</li>
-			</ul>
-	
-            <table class="table table-bordered">
-                <tbody>
-                    @if (Model == null || Model.Count() == 0)
-                    {
-                        <tr>
-                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd">
-                                <p>还没有任何留言，快来抢车位吧。 <span style="float: right">2016.10.17</span></p>
+            @{
+                int prePageId = (Model.curr_page_index > 1) ? Model.curr_page_index - 1 : 1;
+                int nextPageId = (Model.curr_page_index < Model.sum_pages) ? Model.curr_page_index + 1 : Model.sum_pages;
+            }
+            <ul class="pagination pagination-lg">
+                <li>
+                    <a href="@Url.Content("~/Advice/Advice?pages = 1")">首页</a>
+                </li>
+                <li>
+                    <a href="@Url.Content("~/Advice/Advice?@pages=" + prePageId)">上一页</a>
+                </li>
+                @for (int i = Model.start_page_index; i <= Model.end_page_index; i++)
+                {
+                    <li>
+                        <a id="@i" href="@Url.Content("~/Advice/Advice?&pages=" + i)">@i</a>
+                    </li>
+                }
+                <li>
+                    <a href="@Url.Content("~/Advice/Advice?&pages=" + nextPageId)">下一页</a>
+                </li>
+                <li>
+                    <a href="@Url.Content("~/Advice/Advice?&pages=" + Model.sum_pages)">末页</a>
+                </li>
+                <li>
+                    <span>@Model.curr_page_index/@Model.sum_pages<span>页</span></span>
+                </li>
+            </ul>
 
-                            </td>
-                        </tr>
-                    }
-
-                    else
-                    {
-                        int i = 1;
-                        foreach (var item in Model)
+            @{
+                Advice[] AdviceArray = curr_page_data.ToArray();
+                int j = 1;
+                for (int i = 0; i < curr_page_data.Count(); i++)
+                {
+                <table class="table table-bordered">
+                    <tbody>
+                        @if (Model == null || curr_page_data.Count() == 0)
                         {
+                            <tr>
+                                <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd">
+                                    <p>还没有任何留言，快来抢车位吧。 <span style="float: right">2016.10.17</span></p>
+
+                                </td>
+                            </tr>
+                        }
+
                         <tr>
                             <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd">
-                                <p>@(i++)# <span style="float: right">@item.time</span></p>
-                                <p><b>姓名：</b>@item.name</p>
-                                <p><b>内容：</b>@item.内容</p>
-
+                                <p>@(j++)# <span style="float: right">@AdviceArray[i].time</span></p>
+                                <p><b>姓名：</b>@AdviceArray[i].name</p>
+                                <p><b>内容：</b>@AdviceArray[i].内容</p>
                             </td>
                         </tr>
-                            
-                        }
-                    }
-                </tbody>
-            </table>
+                        <!--
+                       
+                            -->
+
+                    </tbody>
+                </table>
+                
+                }
+            }
         </div>
     </div>
 </div>
 
-
-
 <div id="contact" class="get-in-touch">
-    <div class="container" style="background-color:white">
+    <div class="container" style="background-color: white">
         <div class="get-info text-center">
             <h3>建议</h3>
         </div>
@@ -84,7 +88,7 @@
 </div>
 
 <div class="contact-us">
-    <div class="container" style="background-color:white">
+    <div class="container" style="background-color: white">
 
         <div class="col-md-12 column">
             <div class="contact-info">

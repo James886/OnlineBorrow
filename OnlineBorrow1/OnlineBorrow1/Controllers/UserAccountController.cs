@@ -31,9 +31,14 @@ namespace OnlineBorrow1.Controllers
         // GET: /UserAccount/
 
          [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(int pages = 1)
         {
-            return View(db.Users.ToList());
+            IEnumerable<User> users = from item in db.Users
+                                      select item;
+            Paging paging = new Paging(users, 11, 3, pages);
+
+            return View(paging);
+            
         }
 
         //

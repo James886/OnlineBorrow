@@ -1,14 +1,15 @@
-﻿@model IEnumerable<OnlineBorrow1.Models.User>
+﻿@using OnlineBorrow1.Models;
 
+
+@model Paging
 @{
-    ViewBag.Title = "Index";
+    List<User> curr_page_data = (List<User>)Model.curr_page_data;
+    ViewBag.Title = "用户管理";
 }
 
 <style>
-    td { 
-        border:1px solid black;
-    }
-    </style>
+    td { border: 1px solid black; }
+</style>
 <div class="container" style="background-color: white">
     <div class="row clearfix">
 
@@ -17,6 +18,33 @@
             <h2>
                 @Html.ActionLink("新用户添加", "Create")
             </h2>
+              @{
+                  int prePageId = (Model.curr_page_index > 1) ? Model.curr_page_index - 1 : 1;
+                  int nextPageId = (Model.curr_page_index < Model.sum_pages) ? Model.curr_page_index + 1 : Model.sum_pages;
+                }
+            <ul class="pagination pagination-lg">
+                <li>
+                    <a href="@Url.Content("~/UserAccount/Index?pages = 1")">首页</a>
+                </li>
+                <li>
+                    <a href="@Url.Content("~/UserAccount/Index?&pages=" + prePageId)">上一页</a>
+                </li>
+                @for (int i = Model.start_page_index; i <= Model.end_page_index; i++)
+                {
+                <li>
+                    <a id="@i" href="@Url.Content("~/UserAccount/Index?&pages=" + i)">@i</a>
+                </li>
+                }
+                <li>
+                    <a href="@Url.Content("~/UserAccount/Index?&pages=" + nextPageId)">下一页</a>
+                </li>
+                <li>
+                    <a href="@Url.Content("~/UserAccount/Index?&pages=" + Model.sum_pages)">末页</a>
+                </li>
+                <li>
+                    <span>@Model.curr_page_index/@Model.sum_pages<span>页</span></span>
+                    </li>
+            </ul>
             <table class="table table-bordered">
                 <tr>
 
@@ -31,48 +59,39 @@
                     </th>
                 </tr>
                 <tbody>
-                    @foreach (var item in Model)
-                {
+                    @{
+                        User[] AdviceArray = curr_page_data.ToArray();
+                        //int j = 1;
+                        for (int i = 0; i < curr_page_data.Count(); i++)
+                        {
+                
                     <tr>
                         <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
                                 <div style="padding-top: 5px">
-                                    @Html.DisplayFor(modelItem => item.username)
+                                   @AdviceArray[i].username
                                 </div>
                             </td>
                         <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
                                 <div style="padding-top: 5px">
-                                     @Html.DisplayFor(modelItem => item.password)
+                                     @AdviceArray[i].password
                                 </div>
                             </td>
                         <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
                                 <div style="padding-top: 5px">
-                                    @Html.ActionLink("修改", "Edit", new { id = item.user_id }) |
-                             @Html.ActionLink("详情", "Details", new { id = item.user_id }) |
-                            @Html.ActionLink("删除", "Delete", new { id = item.user_id })
+                                    @Html.ActionLink("修改", "Edit", new { id = AdviceArray[i].user_id }) |
+                             @Html.ActionLink("详情", "Details", new { id = AdviceArray[i].user_id }) |
+                            @Html.ActionLink("删除", "Delete", new { id = AdviceArray[i].user_id })
                                 </div>
                             </td>
                         
                     </tr>
+                        }
                 }
                      
                    
                 </tbody>
             </table>
 
-            <table style="border: 1px solid black">
-                <tr>
-                    <th>
-                        
-                    </th>
-                    <th>
-                       
-                    </th>
-                    <th></th>
-                </tr>
-
-                
-
-            </table>
         </div>
     </div>
 </div>
