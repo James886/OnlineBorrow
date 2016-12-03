@@ -38,17 +38,28 @@ namespace OnlineBorrow1.Models
         {
             sum_items = data_item_count;
             sum_pages = (int)Math.Ceiling(sum_items / (itemsCount_in_apage * 1.0));
+            if (sum_pages == 0)
+            {
+                sum_pages = 1;
+                start_item_index = 0;
+                end_item_index = 0;
+                start_page_index = 1;
+                end_page_index = 1;
+            }
+            else
+            {
 
-            if (curr_page_index <= 0)
-                curr_page_index = 1;
-            if (curr_page_index >= sum_pages)
-                curr_page_index = sum_pages;
+                if (curr_page_index <= 0)
+                    curr_page_index = 1;
+                if (curr_page_index >= sum_pages)
+                    curr_page_index = sum_pages;
 
-            start_item_index = (curr_page_index - 1) * itemsCount_in_apage;
-            end_item_index = Math.Min(curr_page_index * itemsCount_in_apage, sum_items) - 1;
+                start_item_index = (curr_page_index - 1) * itemsCount_in_apage;
+                end_item_index = Math.Min(curr_page_index * itemsCount_in_apage, sum_items) - 1;
 
-            start_page_index = ((curr_page_index - 1) / link_num_in_apage) * link_num_in_apage + 1;
-            end_page_index = Math.Min(start_page_index + link_num_in_apage - 1, sum_pages); 
+                start_page_index = ((curr_page_index - 1) / link_num_in_apage) * link_num_in_apage + 1;
+                end_page_index = Math.Min(start_page_index + link_num_in_apage - 1, sum_pages);
+            }
         }
 
         public void GetData()

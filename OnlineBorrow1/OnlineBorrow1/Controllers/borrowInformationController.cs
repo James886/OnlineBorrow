@@ -87,22 +87,10 @@ namespace OnlineBorrow1.Controllers
         }
 
         [Authorize]
-        public ActionResult requestCondition(int informationCategory = 1, int pages = 1)
+        public ActionResult requestCondition(int informationCategory = 2, int pages = 1)
         {
             int type_id = 0;
-           // List<borrowInformation> borrowInformations = null;
-            if (informationCategory == 0)
-            {
-                type_id = 0;
-            }
-            if (informationCategory == 1)
-            {
-                type_id = 1;
-            }
-            if (informationCategory == 2)
-            {
-                type_id = 2;
-            }
+            type_id = informationCategory;
             HttpCookie type_idCookie = null;
             if (Request.Cookies["type_id"] != null)
             {

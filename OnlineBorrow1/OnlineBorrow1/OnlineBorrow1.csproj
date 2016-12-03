@@ -126,6 +126,7 @@
     <Compile Include="Controllers\CheckController.cs" />
     <Compile Include="Controllers\CheckScheduleController.cs" />
     <Compile Include="Controllers\PrintController.cs" />
+    <Compile Include="Controllers\ScheduleAddOrUpdateController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\UserAccountController.cs" />
     <Compile Include="Migrations\201610311511378_InitialCreate.cs" />
@@ -309,6 +310,10 @@
     <Content Include="Views\Check\inforCheck.cshtml" />
     <Content Include="Views\Check\detailCheck.cshtml" />
     <Content Include="Views\Print\print.cshtml" />
+    <Content Include="Views\ScheduleAddOrUpdate\Index.cshtml" />
+    <Content Include="Views\ScheduleAddOrUpdate\Create.cshtml" />
+    <Content Include="Views\ScheduleAddOrUpdate\Edit.cshtml" />
+    <Content Include="Views\ScheduleAddOrUpdate\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="assets\bootstrap\fonts\" />
