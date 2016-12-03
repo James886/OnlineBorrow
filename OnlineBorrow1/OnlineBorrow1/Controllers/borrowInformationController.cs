@@ -87,13 +87,58 @@ namespace OnlineBorrow1.Controllers
         }
 
         [Authorize]
-        public ActionResult requestCondition(int informationCategory = 0)
+        public ActionResult requestCondition(int informationCategory = 1, int pages = 1)
         {
-            List<borrowInformation> borrowInformations = null;
+            int type_id = 0;
+           // List<borrowInformation> borrowInformations = null;
+            if (informationCategory == 0)
+            {
+                type_id = 0;
+            }
+            if (informationCategory == 1)
+            {
+                type_id = 1;
+            }
+            if (informationCategory == 2)
+            {
+                type_id = 2;
+            }
+            HttpCookie type_idCookie = null;
+            if (Request.Cookies["type_id"] != null)
+            {
+
+                type_idCookie = Request.Cookies["type_id"];
+            }
+            else
+            {
+                type_idCookie = new HttpCookie("type_id");
+            }
+            type_idCookie.Value = type_id.ToString();
+            Response.Cookies.Add(type_idCookie);
+
+            IEnumerable<borrowInformation> borrowInformations = null;
             borrowInformationContext infortionsContext = new borrowInformationContext();
             HttpCookie CurrCookie = Request.Cookies["user_id"];
             int NUM = Convert.ToInt32(CurrCookie.Value);
 
+            if (informationCategory == 2)
+            {
+                 borrowInformations = from items in infortionsContext.borrowInformations
+                                                                    where items.user_id == NUM
+                                                                    orderby items.提交时间 descending
+                                                                    select items;
+            }
+            else
+            {
+                 borrowInformations = from items in infortionsContext.borrowInformations
+                                                                    where items.informationCategory == informationCategory && items.user_id == NUM
+                                                                    orderby items.提交时间 descending
+                                                                    select items;
+            }
+            Paging paging = new Paging(borrowInformations,6,3,pages);
+            return View(paging);
+
+            /*
             if (informationCategory == 2)
             {
                 borrowInformations = (from item in db.borrowInformations.ToList()
@@ -108,8 +153,9 @@ namespace OnlineBorrow1.Controllers
                                       where item.informationCategory == informationCategory && item.user_id == NUM
                                       select item).ToList();
             }
+             * */
 
-            return View(borrowInformations);
+           // return View(borrowInformations);
         }
 
       

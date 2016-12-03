@@ -1,6 +1,12 @@
-﻿@model IEnumerable<OnlineBorrow1.Models.borrowInformation>
+﻿@using OnlineBorrow1.Models;
+
+@model Paging
 @{
+    List<borrowInformation> curr_page_data = (List<borrowInformation>)Model.curr_page_data;
     ViewBag.Title = "申请审核的状态";
+    //int borrow_type_id = curr_page_data.First().informationCategory;
+    HttpCookie CurrCookie = Request.Cookies["type_id"];
+    int NUM = Convert.ToInt32(CurrCookie.Value);
    
 }
 
@@ -23,18 +29,23 @@
                     请在机房使用完后,桌椅恢复原位,做好机房的卫生工作
                 </p>
             </div>
+          
+                 
+                 
             <ul class="pagination" style="float: left; margin-top: 0px; padding-top: 0px;">
-
+               
                 <li>
-                    <a href="~/borrowInformation/requestCondition?informationCategory=0">还未审核</a>
+                    <a href="~/borrowInformation/requestCondition?informationCategory=0" >还未审核</a>
                 </li>
                 <li>
                     <a href="~/borrowInformation/requestCondition?informationCategory=1">审核通过</a>
                 </li>
                 <li>
-                    <a href="~/borrowInformation/requestCondition?informationCategory=2">我的全部申请</a>
+                    <a href="~/borrowInformation/requestCondition?informationCategory=2" >我的全部申请</a>
                 </li>
             </ul>
+                
+
             <table class="table table-bordered">
                 <tr>
 
@@ -64,9 +75,14 @@
                     </th>
                     
                 </tr>
+                
+              @{
+                borrowInformation[] borrowInformationArray = curr_page_data.ToArray();
+                for (int i = 0; i < curr_page_data.Count(); i++)
+                {
                 <tbody>
 
-                    @if (Model == null || Model.Count() == 0)
+                    @if (Model == null)
                     {
                         <tr>
                             <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd" colspan="9">
@@ -79,54 +95,52 @@
                     else
                     {
 
-                        foreach (var item in Model)
-                        {
-                            if (@item.informationCategory == 0)
+                            if (borrowInformationArray[i].informationCategory == 0)
                             {
                         <tr class="warning">
 
                             <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
                                 <div style="padding-top: 5px">
-                                    <p>@item.单位名称</p>
+                                    <p>@borrowInformationArray[i].单位名称</p>
                                 </div>
                             </td>
                             <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
                                 <div style="padding-top: 5px">
-                                    <p>@item.借用人</p>
+                                    <p>@borrowInformationArray[i].借用人</p>
                                 </div>
                             </td>
                             <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
                                 <div style="padding-top: 5px">
-                                    <p>@item.借用人身份</p>
+                                    <p>@borrowInformationArray[i].借用人身份</p>
                                 </div>
                             </td>
                             <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
                                 <div style="padding-top: 5px">
-                                    <p>@item.借用机房</p>
+                                    <p>@borrowInformationArray[i].借用机房</p>
                                 </div>
                             </td>
                             <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
                                 <div style="padding-top: 5px">
                                     <p>
 
-                                        @if (@item.用途 != null)
+                                        @if (borrowInformationArray[i].用途 != null)
                                         {
-                                            @item.用途
+                                            @borrowInformationArray[i].用途
                                         }
                                         else
                                         {
-                                            @item.其它
+                                            @borrowInformationArray[i].其它
                                         }
                                     </p>
                                 </div>
                             </td>
 
                             <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
-                                <p><span style="float: right">@item.提交时间</span></p>
+                                <p><span style="float: right">@borrowInformationArray[i].提交时间</span></p>
                             </td>
                            
                             <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
-                                @if (@item.informationCategory == 0)
+                                @if (borrowInformationArray[i].informationCategory == 0)
                                 {
                                     <a href="#">还未审核</a>
                                 }
@@ -136,13 +150,13 @@
                                 }
                             </td>
                             <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
-                                @if (@item.informationCategory == 0)
+                                @if (borrowInformationArray[i].informationCategory == 0)
                                 {
                                     <p>不能打印</p>
                                 }
                                 else
                                 {
-                                    <a href="~/Print/print?information_id=@item.information_id" target="_blank">可以打印</a>
+                                    <a href="~/Print/print?information_id=@borrowInformationArray[i].information_id" target="_blank">可以打印</a>
                                 }
                             </td>
                         </tr>
@@ -153,46 +167,46 @@
 
                             <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
                                 <div style="padding-top: 5px">
-                                    <p>@item.单位名称</p>
+                                    <p>@borrowInformationArray[i].单位名称</p>
                                 </div>
                             </td>
                             <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
                                 <div style="padding-top: 5px">
-                                    <p>@item.借用人</p>
+                                    <p>@borrowInformationArray[i].借用人</p>
                                 </div>
                             </td>
                             <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
                                 <div style="padding-top: 5px">
-                                    <p>@item.借用人身份</p>
+                                    <p>@borrowInformationArray[i].借用人身份</p>
                                 </div>
                             </td>
                             <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
                                 <div style="padding-top: 5px">
-                                    <p>@item.借用机房</p>
+                                    <p>@borrowInformationArray[i].借用机房</p>
                                 </div>
                             </td>
                             <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
                                 <div style="padding-top: 5px">
                                     <p>
 
-                                        @if (@item.用途 != null)
+                                        @if (borrowInformationArray[i].用途 != null)
                                         {
-                                            @item.用途
+                                            @borrowInformationArray[i].用途
                                         }
                                         else
                                         {
-                                            @item.其它
+                                            @borrowInformationArray[i].其它
                                         }
                                     </p>
                                 </div>
                             </td>
 
                             <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
-                                <p><span style="float: right">@item.提交时间</span></p>
+                                <p><span style="float: right">@borrowInformationArray[i].提交时间</span></p>
                             </td>
                            
                             <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
-                                @if (@item.informationCategory == 0)
+                                @if (borrowInformationArray[i].informationCategory == 0)
                                 {
                                     <a href="#">还未审核</a>
                                 }
@@ -202,22 +216,53 @@
                                 }
                             </td>
                             <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
-                                @if (@item.informationCategory == 0)
+                                @if (borrowInformationArray[i].informationCategory == 0)
                                 {
                                     <p>不能打印</p>
                                 }
                                 else
                                 {
-                                    <a href="~/Print/print?information_id=@item.information_id" target="_blank">可以打印</a>
+                                    <a href="~/Print/print?information_id=@borrowInformationArray[i].information_id" target="_blank">可以打印</a>
                                 }
                             </td>
                         </tr>
                             }
                             
                         }
-                    }
+                    
                 </tbody>
+                    }
+              }
             </table>
+            
+
+             @{
+                int prePageId = (Model.curr_page_index > 1) ? Model.curr_page_index - 1 : 1;
+                int nextPageId = (Model.curr_page_index < Model.sum_pages) ? Model.curr_page_index + 1 : Model.sum_pages;
+            }
+            <ul class="pagination pagination-lg">
+                <li>
+                    <a href="@Url.Content("~/borrowInformation/requestCondition?&informationCategory=" + NUM + "&pages = 1")">首页</a>
+                </li>
+                <li>
+                    <a href="@Url.Content("~/borrowInformation/requestCondition?&informationCategory=" + NUM + "&pages=" + prePageId)">上一页</a>
+                </li>
+                @for (int i = Model.start_page_index; i <= Model.end_page_index; i++)
+                {
+                    <li>
+                        <a id="@i" href="@Url.Content("~/borrowInformation/requestCondition?&informationCategory=" + NUM + "&pages=" + i)">@i</a>
+                    </li>
+                }
+                <li>
+                    <a href="@Url.Content("~/borrowInformation/requestCondition?&informationCategory=" + NUM + "&pages=" + nextPageId)">下一页</a>
+                </li>
+                <li>
+                    <a href="@Url.Content("~/borrowInformation/requestCondition?&informationCategory=" + NUM + "&pages=" + Model.sum_pages)">末页</a>
+                </li>
+                <li>
+                    <span>@Model.curr_page_index/@Model.sum_pages<span>页</span></span>
+                </li>
+            </ul>
             
         </div>
     </div>
