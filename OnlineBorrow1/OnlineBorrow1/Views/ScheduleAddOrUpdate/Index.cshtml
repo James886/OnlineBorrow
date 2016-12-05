@@ -1,374 +1,257 @@
-﻿@{
+﻿@model IEnumerable<OnlineBorrow1.Models.lookSchedule>
+
+@{
     ViewBag.Title = "课表详情";
+    //HttpCookie CurrCookie = Request.Cookies["classCategory"];
+    //int NUM = Convert.ToInt32(CurrCookie.Value);
 }
 
 
 <style>
-    th { 
-        font-size:18.7px;
-        border: 1px solid #ddd!important;
-    }
-    td { 
-        font-size:18.7px;
-        border: 1px solid #ddd!important;
-    }
-    table { 
-        border-radius:2px;
-        border-width:2px;
-        border-color:black;
-    }
-    </style>
+    th { font-size: 18.7px; border: 1px solid #ddd!important; text-align: center; }
+    td { font-size: 18.7px; border: 1px solid #ddd!important; text-align: center; }
+    table { border-radius: 2px; border-width: 2px; border-color: black; }
+    input { border: none; width: 100%; height: 100px; text-align: center; }
+    td.font { font-size:10px;}
+</style>
 
 <div class="container">
-	<div class="row clearfix">
-		<div class="col-md-12 column">
-			<table class="table">
-				<thead>
-					<tr>
-                        <th colspan="2">
-							节次
-						</th>
-						<th>
-							星期一
-						</th>
-						<th>
-							星期二
-						</th>
-						<th>
-							星期三
-						</th>
-						<th>
-							星期四
-						</th>
-                        <th>
-							星期五
-						</th>
-                        <th>
-							星期六
-						</th>
-                        <th>
-							星期日
-						</th>
-                        <th>
-							时间
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td rowspan="4" >
-							上午
-						</td>
-						<td rowspan="2">
-							第一大节
-						</td>
-						<td rowspan="2">
-							121212
-						</td>
-						<td rowspan="2">
-							Default
-						</td>
-                        <td rowspan="2">
-							Default
-						</td>
-                        <td rowspan="2">
-							Default
-						</td>
-                        <td rowspan="2">
-							Default
-						</td>
-                        <td rowspan="2">
-							Default
-						</td>
-                        <td rowspan="2">
-							Default
-						</td>
-                        <td rowspan="2">
-							Default
-						</td>
-					</tr>
-					<tr class="success">
-						<td>
-							1
-						</td>
-						<td >
-							TB - Monthly
-						</td>
-						<td>
-							01/04/2012
-						</td>
-						<td>
-							Approved
-						</td>
-                        <td>
-							Default
-						</td>
-                        <td>
-							Default
-						</td>
-                        <td>
-							Default
-						</td>
-                        <td>
-							Default
-						</td>
-					</tr>
-					<tr class="error">
-						<td rowspan="2">
-							第二大节
-						</td>
-						<td rowspan="2">
-							TB - Monthly
-						</td>
-						<td>
-							02/04/2012
-						</td>
-						<td>
-							Declined
-						</td>
-                        <td>
-							Default
-						</td>
-                        <td>
-							Default
-						</td>
-                        <td>
-							Default
-						</td>
-                        <td>
-							Default
-						</td>
-                        <td>
-							Default
-						</td>
-					</tr>
-					<tr class="warning">
-						<td>
-							3
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							03/04/2012
-						</td>
-						<td>
-							Pending
-						</td>
-                        <td>
-							Default
-						</td>
-                        <td>
-							Default
-						</td>
-                        <td>
-							Default
-						</td>
-                        <td>
-							Default
-						</td>
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+
+            <div class="form-group" style="padding-top: 10px;padding-bottom:40px; border:2px dashed  #ddd">
+                <label for="inputEmail3" class="col-sm-2 control-label" style="font-size: 20px">课表录入</label>
+                <div class="col-sm-2">
+                    <a href="@Url.Content("~/ScheduleAddOrUpdate/Index?classCategory=1")" style="font-size: 20px">计121</a>
+                </div>
+
+                <div class="col-sm-2">
+                    <a href="@Url.Content("~/ScheduleAddOrUpdate/Index?classCategory=2")" style="font-size: 20px">计223</a>
+                </div>
+
+                <div class="col-sm-2">
+                    <a href="@Url.Content("~/ScheduleAddOrUpdate/Index?classCategory=3")" style="font-size: 20px">计315</a>
+                </div>
+
+                <div class="col-sm-2">
+                    <a href="@Url.Content("~/ScheduleAddOrUpdate/Index?classCategory=4")" style="font-size: 20px">计310</a>
+                </div>
+
+                <div class="col-sm-2">
+                    <a href="@Url.Content("~/ScheduleAddOrUpdate/Index?classCategory=5")" style="font-size: 20px">计321</a>
+                </div>
+            </div>
+
+            <form action="@Url.Content("~/ScheduleAddOrUpdate/ScheduleAddOrUpdate")"  method="post">
+            <table class="table" >
+                <caption style="text-align: center; font-size: 25px; color: black; font-weight: bolder">
+                     计算机系 @Request.Cookies["classCategory"].Value 教室课表
+                </caption>
+               
+                <thead>
+                    <tr>
+
+                        <th colspan="2">节次
+                        </th>
+
+                        <th>星期一
+                        </th>
+                        <th>星期二
+                        </th>
+                        <th>星期三
+                        </th>
+                        <th>星期四
+                        </th>
+                        <th>星期五
+                        </th>
+                        <th>星期六
+                        </th>
+                        <th>星期日
+                        </th>
+                        <th>时间
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td rowspan="2" class="col-md-1" style="padding-top:90px;">
+                            上午
+                        </td>
+                        <td class="col-md-1" style="padding-top:40px">第一大节
+                        </td>
+                        <td class="col-md-1 font" style="padding: 0">
+                            <input type="text" name="第一大节1" id="第一大节1" required  />
+                        </td>
+                        <td class="col-md-1 font" style="padding: 0">
+                            <input type="text" name="第一大节2" id="第一大节2" required />
+                        </td>
+                        <td class="col-md-1 font" style="padding: 0">
+                            <input type="text" name="第一大节3" id="第一大节3" required  />
+                        </td>
+                        <td class="col-md-1 font" style="padding: 0">
+                            <input type="text" name="第一大节4" id="第一大节4" required  />
+                        </td>
+                        <td class="col-md-1 font" style="padding: 0">
+                            <input type="text" name="第一大节5" id="第一大节5" required  />
+                        </td>
+                        <td class="col-md-1 font" style="padding: 0">
+                            <input type="text" name="第一大节6" id="第一大节6" required  />
+                        </td>
+                        <td class="col-md-1 font" style="padding: 0">
+                            <input type="text" name="第一大节7" id="第一大节7" required />
+                        </td>
+                        <td class="col-md-2" style="padding-top:20px">第一、二节
+                           
+                            <br />
+                            08:30-10:10
+                            </td>
+                    </tr>
+                    
+                    <tr class="error">
+                        <td style="padding-top:40px">第二大节
+                        </td>
+                        <td class="col-md-1 font" style="padding: 0">
+                            <input type="text" name="第二大节1" id="第二大节1" required  />
+                        </td>
+                        <td class="col-md-1 font" style="padding: 0">
+                            <input type="text" name="第二大节2" id="第二大节2" required  />
+                        </td>
+                        <td class="col-md-1 font" style="padding: 0">
+                            <input type="text" name="第二大节3" id="第二大节3" required  />
+                        </td>
+                        <td class="col-md-1 font" style="padding: 0">
+                            <input type="text" name="第二大节4" id="第二大节4" required  />
+                        </td>
+                        <td class="col-md-1 font" style="padding: 0">
+                            <input type="text" name="第二大节5" id="第二大节5" required  />
+                        </td>
+                        <td class="col-md-1 font" style="padding: 0">
+                            <input type="text" name="第二大节6" id="第二大节6" required  />
+                        </td>
+                        <td class="col-md-1 font" style="padding: 0">
+                            <input type="text" name="第二大节7" id="第二大节7" required  />
+                        </td>
+                        <td class="col-md-1" style="padding-top:20px">第三、四节
+                           
+                            <br />
+                            10:50-12:30
+                            </td>
+                    </tr>
+
+                    <tr class="info">
+                        <td colspan="10"></td>
+
+                    </tr>
+                    <tr>
+                        <td rowspan="2" style="padding-top:90px;">
+                            下午
+                        </td>
+                        <td style="padding-top:40px">第三大节
+                        </td>
+                        <td class="col-md-1 font" style="padding: 0">
+                            <input type="text" name="第三大节1" id="第三大节1" required  />
+                        </td>
+                        <td class="col-md-1 font" style="padding: 0">
+                            <input type="text" name="第三大节2" id="第三大节2" required />
+                        </td>
+                        <td class="col-md-1 font" style="padding: 0">
+                            <input type="text" name="第三大节3" id="第三大节3" required  />
+                        </td>
+                        <td class="col-md-1 font" style="padding: 0">
+                            <input type="text" name="第三大节4" id="第三大节4" required  />
+                        </td>
+                        <td class="col-md-1 font" style="padding: 0">
+                            <input type="text" name="第三大节5" id="第三大节5" required  />
+                        </td>
+                        <td class="col-md-1 font" style="padding: 0">
+                            <input type="text" name="第三大节6" id="第三大节6" required  />
+                        </td>
+                        <td class="col-md-1 font" style="padding: 0">
+                            <input type="text" name="第三大节7" id="第三大节7" required  />
+                        </td>
+                        <td class="col-md-1" style="padding-top:20px">第五、六节
+                           
+                            <br />
+                            14:00-15:40
+                            </td>
+                    </tr>
+
+                    <tr>
+                        <td style="padding-top:40px">第四大节
+                        </td>
+                        <td class="col-md-1 font" style="padding: 0">
+                            <input type="text" name="第四大节1" id="第四大节1" required />
+                        </td>
+                        <td class="col-md-1 font" style="padding: 0">
+                            <input type="text" name="第四大节2" id="第四大节2" required  />
+                        </td>
+                        <td class="col-md-1 font" style="padding: 0">
+                            <input type="text" name="第四大节3" id="第四大节3" required />
+                        </td>
+                        <td class="col-md-1 font" style="padding: 0">
+                            <input type="text" name="第四大节4" id="第四大节4" required />
+                        </td>
+                        <td class="col-md-1 font" style="padding: 0">
+                            <input type="text" name="第四大节5" id="第四大节5" required  />
+                        </td>
+                        <td class="col-md-1 font" style="padding: 0">
+                            <input type="text" name="第四大节6" id="第四大节6" required  />
+                        </td>
+                        <td class="col-md-1 font" style="padding: 0">
+                            <input type="text" name="第四大节7" id="第四大节7" required  />
+                        </td>
+                        <td class="col-md-1" style="padding-top:20px">第七、八节
+                           
+                            <br />
+                            15:50-17:30
+                            </td>
+
+                    </tr>
+
+                    <tr class="info">
+                        <td colspan="10"></td>
+
+                    </tr>
+                    <tr>
+                        <td rowspan="2" style="padding-top:40px;">
+                            晚上
+                        </td>
+                        <td rowspan="2" style="padding-top:40px">第五大节
+                        </td>
+                        <td class="col-md-1 font" style="padding: 0">
+                            <input type="text" name="第五大节1" id="第五大节1" required />
+                        </td>
+                        <td class="col-md-1 font" style="padding: 0">
+                            <input type="text" name="第五大节2" id="第五大节2" required  />
+                        </td>
+                        <td class="col-md-1 font" style="padding: 0">
+                            <input type="text" name="第五大节3" id="第五大节3" required  />
+                        </td>
+                        <td class="col-md-1 font" style="padding: 0">
+                            <input type="text" name="第五大节4" id="第五大节4" required  />
+                        </td>
+                        <td class="col-md-1 font" style="padding: 0">
+                            <input type="text" name="第五大节5" id="第五大节5" required />
+                        </td>
+                        <td class="col-md-1 font" style="padding: 0">
+                            <input type="text" name="第五大节6" id="第五大节6" required  />
+                        </td>
+                        <td class="col-md-1 font" style="padding: 0">
+                            <input type="text" name="第五大节7" id="第五大节7" required  />
+                        </td>
+                        <td class="col-md-1" style="padding-top:20px">第九、十节
+                           
+                            <br />
+                            19:20-21:00
+                            </td>
+                    </tr>
                         
-					</tr>
-					<tr class="info">
-						<td colspan="10">
-							
-						</td>
-						
-					</tr>
-                    <tr class="info">
-						<td rowspan="4">
-							下午
-						</td>
-						<td rowspan="2">
-							第三大节
-						</td>
-						<td>
-							04/04/2012
-						</td>
-						<td>
-							Call in to confirm
-						</td>
-                        <td>
-							Default
-						</td>
-                        <td>
-							Default
-						</td>
-                        <td>
-							Default
-						</td>
-                        <td>
-							Default
-						</td>
-                        <td>
-							Default
-						</td>
-                        <td>
-							Default
-						</td>
-					</tr>
-                    <tr class="info">
-						<td>
-							4
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							04/04/2012
-						</td>
-						<td>
-							Call in to confirm
-						</td>
-                        <td>
-							Default
-						</td>
-                        <td>
-							Default
-						</td>
-                        <td>
-							Default
-						</td>
-                        <td>
-							Default
-						</td>
-                        <td>
-							Default
-						</td>
-                       
-					</tr>
-                    <tr class="info">
-						<td rowspan="2">
-							第四大节
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							04/04/2012
-						</td>
-						<td>
-							Call in to confirm
-						</td>
-                        <td>
-							Default
-						</td>
-                        <td>
-							Default
-						</td>
-                        <td>
-							Default
-						</td>
-                        <td>
-							Default
-						</td>
-                        <td>
-							Default
-						</td>
-                        
-					</tr>
-                    <tr class="info">
-						<td>
-							4
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							04/04/2012
-						</td>
-						<td>
-							Call in to confirm
-						</td>
-                        <td>
-							Default
-						</td>
-                        <td>
-							Default
-						</td>
-                        <td>
-							Default
-						</td>
-                        <td>
-							Default
-						</td>
-                        <td>
-							Default
-						</td>
-                        
-					</tr>
-                    <tr class="info">
-						<td colspan="10">
-							
-						</td>
-						
-					</tr>
-                    <tr class="info">
-						<td rowspan="2">
-							晚上
-						</td>
-						<td rowspan="2">
-							第五大节
-						</td>
-						<td>
-							04/04/2012
-						</td>
-						<td>
-							Call in to confirm
-						</td>
-                        <td>
-							Default
-						</td>
-                        <td>
-							Default
-						</td>
-                        <td>
-							Default
-						</td>
-                        <td>
-							Default
-						</td>
-                        <td>
-							Default
-						</td>
-                        <td>
-							Default
-						</td>
-					</tr>
-                    <tr class="info">
-						<td>
-							4
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							04/04/2012
-						</td>
-						<td>
-							Call in to confirm
-						</td>
-                        <td>
-							Default
-						</td>
-                        <td>
-							Default
-						</td>
-                        <td>
-							Default
-						</td>
-                        <td>
-							Default
-						</td>
-                        <td>
-							Default
-						</td>
-                        <td>
-							Default
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
+                </tbody>
+
+            </table>
+                <button type="submit" class="btn btn-primary btn-lg" style="float: right">提交信息</button>
+                </form>
+        </div>
+    </div>
 </div>

@@ -13,12 +13,56 @@
 <div class="container" style="background-color: white">
     <div class="row clearfix">
 
-        <div class="col-md-6 column" style="float: initial">
+        <div class="col-md-12 column" style="float: initial">
 
             <h2>
                 @Html.ActionLink("新用户添加", "Create")
             </h2>
-            @{
+           
+            <table class="table table-bordered">
+                <tr>
+
+                    <th class="col-md-1" style="text-align: center;">用户名
+                    </th>
+                    <th class="col-md-1" style="text-align: center;">密码
+                    </th>
+                    <th style="text-align: center;">操作项
+                    </th>
+                </tr>
+                <tbody>
+                    @{
+                        User[] AdviceArray = curr_page_data.ToArray();
+                        //int j = 1;
+                        for (int i = 0; i < curr_page_data.Count(); i++)
+                        {
+                
+                        <tr>
+                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
+                                <div class="col-md-4 column" style="padding-top: 5px">
+                                    @AdviceArray[i].username
+                                </div>
+                            </td>
+                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
+                                <div class="col-md-4 column" style="padding-top: 5px">
+                                    @AdviceArray[i].password
+                                </div>
+                            </td>
+                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
+                                <div class="col-md-4 column" style="padding-top: 5px">
+                                    @Html.ActionLink("修改", "Edit", new { id = AdviceArray[i].user_id }) |
+                                    @Html.ActionLink("删除", "Delete", new { id = AdviceArray[i].user_id })
+                                </div>
+                            </td>
+
+                        </tr>
+                        }
+                    }
+
+
+                </tbody>
+            </table>
+            <div class="center-block" style="width:50%;">
+             @{
                 int prePageId = (Model.curr_page_index > 1) ? Model.curr_page_index - 1 : 1;
                 int nextPageId = (Model.curr_page_index < Model.sum_pages) ? Model.curr_page_index + 1 : Model.sum_pages;
             }
@@ -54,49 +98,7 @@
                     <span>@Model.curr_page_index/@Model.sum_pages<span>页</span></span>
                 </li>
             </ul>
-            <table class="table table-bordered">
-                <tr>
-
-                    <th class="col-md-1" style="text-align: center;">用户名
-                    </th>
-                    <th class="col-md-1" style="text-align: center;">密码
-                    </th>
-                    <th style="text-align: center;">操作项
-                    </th>
-                </tr>
-                <tbody>
-                    @{
-                        User[] AdviceArray = curr_page_data.ToArray();
-                        //int j = 1;
-                        for (int i = 0; i < curr_page_data.Count(); i++)
-                        {
-                
-                        <tr>
-                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
-                                <div style="padding-top: 5px">
-                                    @AdviceArray[i].username
-                                </div>
-                            </td>
-                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
-                                <div style="padding-top: 5px">
-                                    @AdviceArray[i].password
-                                </div>
-                            </td>
-                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
-                                <div style="padding-top: 5px">
-                                    @Html.ActionLink("修改", "Edit", new { id = AdviceArray[i].user_id }) |
-                                    @Html.ActionLink("删除", "Delete", new { id = AdviceArray[i].user_id })
-                                </div>
-                            </td>
-
-                        </tr>
-                        }
-                    }
-
-
-                </tbody>
-            </table>
-
+                </div>
         </div>
     </div>
 </div>

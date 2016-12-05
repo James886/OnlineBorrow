@@ -177,7 +177,7 @@
 
 
 
-                    <span>第</span><span id="weekCount" style="color: red;"></span><span>周</span>
+                    <span>第</span><!--<span id="weekCount" style="color: red;"></span>-->@Request.Cookies["weekIndex"].Value<span>周</span>
 
                 </h4>
             </div>
@@ -244,19 +244,6 @@
                 $("#cindex7").text(data.cindex7 + " ");
                 $("#cindex8").text(data.cindex8 + " ");
                 $(".date").text($("#借用具体时间始").val());
-
-                /* 日期计算卸载这里，直接使用js就可以i算
-                string str1 = "2016-11-28";
-                DateTime dt1 = Convert.ToDateTime(str1);  //这里你要显示几个信息？ 那你在哪里计算？
-                string str2 = "2016-11-29";
-                DateTime dt2 = Convert.ToDateTime(str2);  //为什么两个 dt, 基准应该是8月 那是第一周
-                TimeSpan ts = dt2 - dt1;
-                int a = Convert.ToInt32(ts.TotalDays);
-                int weekCount = a / 7 + 15;
-                */
-                var weekIndex = 15;
-                $("#date_").text($("#借用具体时间始").val());
-                $("#weekCount").text(weekIndex);
 
                 /* 你是说分页显示？ 这个我自己实现过，分页我写好了   但是我得给你讲讲 你才能懂，可以，ok，大可不必，待会你远程看看我的分页，好
                 */

@@ -14,43 +14,7 @@
     <div class="row clearfix">
         <div class="col-md-12 column">
             <img src ="@Url.Content("~/Images/advice.jpg")"  style="width:100%" />
-            @{
-                int prePageId = (Model.curr_page_index > 1) ? Model.curr_page_index - 1 : 1;
-                int nextPageId = (Model.curr_page_index < Model.sum_pages) ? Model.curr_page_index + 1 : Model.sum_pages;
-            }
-            <ul class="pagination">
-                <li>
-                    <a href="@Url.Content("~/Advice/Advice?pages = 1")">首页</a>
-                </li>
-                <li>
-                    <a href="@Url.Content("~/Advice/Advice?@pages=" + prePageId)">上一页</a>
-                </li>
-                @for (int i = Model.start_page_index; i <= Model.end_page_index; i++)
-                {
-                    if (Model.curr_page_index == i)
-                    {
-                    <li>
-                        <a  href="@Url.Content("~/Advice/Advice?&pages=" + i)" style="color:black;"><strong>@i</strong></a>
-                    </li>
-                    }
-                    else
-                    {
-                         <li>
-                        <a  href="@Url.Content("~/Advice/Advice?&pages=" + i)"><strong>@i</strong></a>
-                    </li>
-                    }
-                }
-                <li>
-                    <a href="@Url.Content("~/Advice/Advice?&pages=" + nextPageId)">下一页</a>
-                </li>
-                <li>
-                    <a href="@Url.Content("~/Advice/Advice?&pages=" + Model.sum_pages)">末页</a>
-                </li>
-                <li>
-                    <span>@Model.curr_page_index/@Model.sum_pages<span>页</span></span>
-                </li>
-            </ul>
-
+          
             @{
                 Advice[] AdviceArray = curr_page_data.ToArray();
                 int j = 1;
@@ -87,6 +51,49 @@
         </div>
     </div>
 </div>
+
+<div class="container">
+  @{
+                int prePageId = (Model.curr_page_index > 1) ? Model.curr_page_index - 1 : 1;
+                int nextPageId = (Model.curr_page_index < Model.sum_pages) ? Model.curr_page_index + 1 : Model.sum_pages;
+            }
+            
+                <div class="center-block" style="width:40%">
+            <ul class="pagination " >
+                <li>
+                    <a href="@Url.Content("~/Advice/Advice?pages = 1")">首页</a>
+                </li>
+                <li>
+                    <a href="@Url.Content("~/Advice/Advice?@pages=" + prePageId)">上一页</a>
+                </li>
+                @for (int i = Model.start_page_index; i <= Model.end_page_index; i++)
+                {
+                    if (Model.curr_page_index == i)
+                    {
+                    <li>
+                        <a  href="@Url.Content("~/Advice/Advice?&pages=" + i)" style="color:black;"><strong>@i</strong></a>
+                    </li>
+                    }
+                    else
+                    {
+                         <li>
+                        <a  href="@Url.Content("~/Advice/Advice?&pages=" + i)"><strong>@i</strong></a>
+                    </li>
+                    }
+                }
+                <li>
+                    <a href="@Url.Content("~/Advice/Advice?&pages=" + nextPageId)">下一页</a>
+                </li>
+                <li>
+                    <a href="@Url.Content("~/Advice/Advice?&pages=" + Model.sum_pages)">末页</a>
+                </li>
+                <li>
+                    <span>@Model.curr_page_index/@Model.sum_pages<span>页</span></span>
+                </li>
+            </ul>
+                </div>
+               
+    </div>
 
 <div id="contact" class="get-in-touch">
     <div class="container" style="background-color: white">
