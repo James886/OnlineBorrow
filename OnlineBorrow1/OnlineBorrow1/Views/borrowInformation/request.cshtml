@@ -3,6 +3,8 @@
     ViewBag.Title = "实验室借用申请";
 }
 
+ <link rel="stylesheet" href="~/assets/bootstrap/css/bootstrap.min.css">
+
 <script src="~/Scripts/request.js"></script>
 <style>
     td { font-size: 18.7px; }
@@ -11,17 +13,13 @@
 <div class="container" style="border: 1px solid #ddd; background-color: white">
     <div class="row clearfix">
         <div class="col-md-12 column">
-            <div class="jumbotron" style="margin-top: 20px; padding-left: 0px">
-                <h2>温馨提示！！！
-                </h2>
-                <p>
-                    请在机房使用完后,桌椅恢复原位,做好机房的卫生工作
-                </p>
+            <div class="jumbotron" style="margin-top: 10px; padding-left: 0px;padding-top:10px;padding-bottom:10px;">
+                <h2 style="color:red;"><i class="icon-quote-left icon-large"></i>&nbsp;&nbsp;温馨提示：请在机房使用完后,桌椅恢复原位,做好机房的卫生工作!&nbsp;&nbsp;<i class="icon-quote-right icon-large"></i></h2>
             </div>
 
 
             <style>
-                td { text-align: center; vertical-align: middle; }
+                td { text-align: left; vertical-align: middle;font-family:宋体; font-weight:bold }
             </style>
 
             <form action="@Url.Content("~/borrowInformation/SaveInformation")" method="post">
@@ -111,7 +109,7 @@
                             <td>借用时间
                             </td>
                             <td style="padding: 0; text-align: center;">
-                                <input type="text" name="借用具体时间始" id="借用具体时间始" style="border: none; width: 100%; height: 45px;" onfocus="HS_setDate(this)" />
+                                <input type="text" name="借用具体时间始" id="借用具体时间始" style="border: none; width: 100%; height: 45px;" onfocus="HS_setDate(this)" value="@(DateTime.Now.ToString("yyyy-MM-dd"))" />
                             </td>
                             <td style="padding: 0; text-align: center;">
                                 <a class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" onclick="FillCourseInfo()" style="height: 45px; width: 100%; padding-top: 8px; padding-bottom: 0px">当天课表查询
@@ -146,7 +144,7 @@
         </div>
 
         <div style="margin-bottom: 20px">
-            <h3>备注:</h3>
+            <h3 style="padding-left:15px;">备注:</h3>
             <ol>
                 <li>此申请表由借用人如实逐项填写，报计算机系实验室管理部审批（补课以及党团、班级、学生会、腾讯俱乐部、辩论赛等活动借用情况只需系实验室管理部审核，如遇承办考试、竞赛、讲座、培训、项目活动等特殊情况需报系领导审批）；审批通过后，持本表到计算机系楼门卫处领取相应机房的钥匙；
                 </li>
@@ -177,7 +175,7 @@
 
 
 
-                    <span>第</span><!--<span id="weekCount" style="color: red;"></span>-->@Request.Cookies["weekIndex"].Value<span>周</span>
+                    <span>第</span><!--<span id="weekCount" style="color: red;"></span>-->16<span>周</span>
 
                 </h4>
             </div>
@@ -189,9 +187,9 @@
                 @for (int i = 1; i <= 8; i++)
                 {
                                                     
-                    <div class="col-md-2  column" style="border: 1px dashed #ddd; text-align: left;"><span>第@(i)节:</span></div>
+                    <div class="col-md-2" style="border: 1px dashed #ddd; text-align: left;"><div style="height:50px">第@(i)节:</div></div>
                                                     
-                    <div class="col-md-10 column" style="border: 1px dashed #ddd; text-align: left;"><span id="cindex@(i)" style="color:green;"></span></div>
+                    <div class="col-md-10" style="border: 1px dashed #ddd; text-align: left;"><div id="cindex@(i)" style="color:red; height:50px">   </div></div>
                 }
                 <div style="clear: both"></div>
             </div>
@@ -234,15 +232,34 @@
             dataType: "json",
 
             success: function (data) {
+                var course = new Array("",data.cindex1, data.cindex2, data.cindex3, data.cindex4, data.cindex5, data.cindex6, data.cindex7, data.cindex8);
+                for (var i = 1; i <= 8; i++) {
+                    if (course[i] == "null" || course[i] == null)
+                        $("#cindex"+i).css("background-color", "green");
+                    else
+                        $("#cindex" + i).text(course[i] + " ");
 
-                $("#cindex1").text(data.cindex1 + " ");
+                }
+               /*
+                if (data.cindex1 == "null") {
+                    $("#cindex1").css("color", "red");
+
+                }
+                else
+                {
+                    
+                }
+                if (data.cindex2 == "null")
+                {
+                    $("#cindex2").css("color", "red");
+                }
                 $("#cindex2").text(data.cindex2 + " ");
                 $("#cindex3").text(data.cindex3 + " ");
                 $("#cindex4").text(data.cindex4 + " ");
                 $("#cindex5").text(data.cindex5 + " ");
                 $("#cindex6").text(data.cindex6 + " ");
                 $("#cindex7").text(data.cindex7 + " ");
-                $("#cindex8").text(data.cindex8 + " ");
+                $("#cindex8").text(data.cindex8 + " ");*/
                 $(".date").text($("#借用具体时间始").val());
 
                 /* 你是说分页显示？ 这个我自己实现过，分页我写好了   但是我得给你讲讲 你才能懂，可以，ok，大可不必，待会你远程看看我的分页，好

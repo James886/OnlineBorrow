@@ -1,13 +1,9 @@
 ﻿@{
-    ViewBag.Title = "Index";
     Layout = null;
 }
 
 <!DOCTYPE html>
-<html lang="en" class="no-js">
-
 <head>
-
     <meta charset="utf-8">
     <title>登陆</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,65 +27,59 @@
     <!--[if lt IE 9]>
             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
-
 </head>
 
 <body style="background-color: white;">
     <div class="container" style="width: 100%; padding: 0">
         <div class="row clearfix" style="margin-right:0px;">
-
-            <div class="col-md-2 column" style="margin-right: 0px">
-            </div>
-            <div class="col-md-6 column" style="padding-top: 22px; padding-bottom: 22px; width: 0;">
+            <div class="col-md-6  col-md-offset-2" style="padding-top: 22px; padding-bottom: 22px; width: 0;">
                 <img src="/Images/logo_2.png" />
             </div>
         </div>
 
-        <div class="row clearfix" style="width: 100%; margin: 0px; height: 600px">
-            <table>
-                <tr>
-                    <td style="width: 18%; background-color: rgb(26, 86, 149);">
-                        <div class="col-md-2 column" style="height: 600px;">
-                        </div>
+        <div class="row clearfix" style="width: 100%; margin: 0px; height: 600px; background-color: rgb(26, 86, 149);">
+            <table style="width:1200px; margin:0 auto; background-color: rgb(26, 86, 149);">
+                <tr style="text-align:center">
+                    <td style="width: 700px;">
+                        <img src="/Images/2.png" style="width: 700px; height: 570px;" />
                     </td>
-                    <td style="width: 38%; background-color: rgb(26, 86, 149);">
-
-                        <img src="/Images/3.png" style="width: 100%; height: 600px;" />
-
-                    </td>
-                    <td style="width: 38%; background-color:rgb(26, 86, 149);">
-                        <div class="col-md-5 column" style="padding: 0; height: 600px;">
-                            <div class="page-container" style="background-color: rgba(0,0,0,0.5); width: 400px; height: 450px; padding-top: 50px; margin-top: 60px">
+                    <td style="width:500px; height:500px; vertical-align:top">
+                            <div class="page-container" style="background-color: rgba(0,0,0,0.1); width: 400px; height: 510px; padding-top: 50px; margin-top: 60px">
                                 <form action="~/User/Login" method="post">
                                     <div class="row" style="margin-left: 5px">
                                         <h1 style="color: white; font-family: Gabriola; float: left"><strong>账号登录</strong></h1>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-1 column">
-                                            <span class="glyphicon glyphicon-user" style="color: white; padding-top: 30px; font-size: 30px;"></span>
-                                        </div>
-                                        <div class="col-md-2 column">
-                                            <input type="text" name="username" class="username" placeholder="Username" style="background-color: LightGoldenRodYellow; color: black; padding-right: 15px; margin-right: 15px;">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-1 column">
-                                            <span class="glyphicon glyphicon-lock" style="color: white; font-size: 30px; padding-top: 30px"></span>
-                                        </div>
-                                        <div class="col-md-2 column">
-                                            <input type="password" name="password" class="password" placeholder="Password" style="background-color: LightGoldenRodYellow; color: black; padding-right: 15px;">
-                                        </div>
-                                    </div>
-                                    <button type="submit" style="margin-left: 22px">登陆</button>
-                                    <div class="error"><span>+</span></div>
+                                    <table style="width:335px;">
+                                        <tr>
+                                            <td style="width:30px;">
+                                                <span class="glyphicon glyphicon-user" style="color: white; padding-top: 30px; font-size: 30px;float:left;"></span>
+                                            </td>
+                                            <td style="width:270px;">
+                                                <input type="text" name="username" class="username" placeholder="Username" style="background-color: LightGoldenRodYellow; color: black;">
+                                            </td>
+                                        </tr>
+
+                                         <tr>
+                                            <td style="width:30px;">   
+                                              <span class="glyphicon glyphicon-lock" style="color: white; font-size: 30px; padding-top: 30px"></span>
+                                            </td>
+                                            <td style="width:270px;">  
+                                                <input type="password" name="password" class="password" placeholder="Password" style="background-color: LightGoldenRodYellow; color: black; ">                    
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td style="width:30px;">
+                                            </td>
+                                            <td style="padding-left:0px;">
+                                                <button type="submit" style="margin-left: 0px;width:270px;">登陆</button>
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </form>
                             </div>
-                        </div>
                     </td>
-                    <td style="width: 18%; background-color:rgb(26, 86, 149);">
-                        <div class="col-md-2 column" style=" height: 600px;">
-                        </div>
-                    </td>
+
                 </tr>
             </table>
         </div>
@@ -100,17 +90,11 @@
             <nav class="navbar navbar-default" role="navigation">
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2" style="background-color: white">
                     <p style="margin-right: auto; color: black; font-size: 12px; padding: 10px">Copyright &copy青海大学计算机系版权所有</p>
-
                     <p style="text-align: center; color: black; font-size: 12px;">联系电话: 0971-5310365. 邮箱: 793940415@qq.com</p>
-
                     <p style="text-align: center; color: black; font-size: 12px; padding: 10px;">网站设计: 青海大学计算机系</p>
-
                 </div>
             </nav>
         </div>
     </div>
-
 </body>
-
 </html>
-

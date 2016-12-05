@@ -13,7 +13,7 @@
 <div class="container" style="background-color: white">
     <div class="row clearfix">
 
-        <div class="col-md-12 column" style="float: initial">
+        <div class="col-md-7 column" style="float: initial">
 
             <h2>
                 @Html.ActionLink("新用户添加", "Create")
@@ -61,7 +61,7 @@
 
                 </tbody>
             </table>
-            <div class="center-block" style="width:50%;">
+            <div class="center-block" style="width:70%;">
              @{
                 int prePageId = (Model.curr_page_index > 1) ? Model.curr_page_index - 1 : 1;
                 int nextPageId = (Model.curr_page_index < Model.sum_pages) ? Model.curr_page_index + 1 : Model.sum_pages;
