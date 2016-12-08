@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
@@ -8,16 +8,18 @@
     @Scripts.Render("~/bundles/modernizr")
 
     <link rel="stylesheet" href="~/assets/bootstrap/css/bootstrap.min.css">
-    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="~/assets/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="@Url.Content("~/Font-Awesome-3.2.1/Font-Awesome-3.2.1/css/font-awesome.min.css")">
+    <link rel="shortcut icon" href="~/Images/title_logo.png">
+    <script src="~/assets/js/jquery.min.js"></script>
     <script src="~/assets/bootstrap/js/bootstrap.min.js"></script>
 </head>
-
 <body style="background-color: white">
     <div class="container" style="width: 100%; margin: 0px; padding: 0px;">
-        <div class="row clearfix" style="padding-right:0px;margin-right:0px;">
+        <div class="row clearfix" style="padding-right: 0px; margin-right: 0px;">
             <div class="col-md-12 column">
 
-                <div class="row clearfix" style="background-color:rgb(26, 86, 149);">
+                <div class="row clearfix" style="background-color: rgb(26, 86, 149);">
                     <div class="col-md-2 column">
                         <div class="logo">
                             <img alt="140x140" src="/Images/logo.png" style="float: left" />
@@ -25,57 +27,74 @@
                     </div>
                     <div class="col-md-4 column">
                         <div style="padding-top: 10px">
-                              @{
-                                string idenName1 = HttpContext.Current.User.Identity.Name;
-                                if (idenName1 != "admin")
+                            @{
+                                string idenName = HttpContext.Current.User.Identity.Name;
+                                if (idenName != "admin")
                                 {
-                            <a href="@Url.Content("~/borrowInformation/Index")">
-                                <img src="/Images/logo_1.png" /></a>
-                              }
-                              if(idenName1 == "admin")
-                              {
-                                  <a href="@Url.Content("~/Check/inforCheck")">
-                                <img src="/Images/logo_1.png" /></a>
-                              }
-                              }
+
+                                <a href="@Url.Content("~/borrowInformation/Index")">
+                                    <img src="/Images/logo_1.png" /></a>
+                                }
+                                if (idenName == "admin")
+                                {
+
+                                <a href="@Url.Content("~/Check/inforCheck")">
+                                    <img src="/Images/logo_1.png" /></a>
+                                }
+                             }
                         </div>
                     </div>
                     <div class="col-md-3 column">
-                        </div>
+                    </div>
                     <div class="col-md-3 column">
                         <div class="xiaoxun">
                             <br />
                             <img alt="140x140" src="/Images/xiaoxun.png" style="float: right" />
                         </div>
                     </div>
-                    
                 </div>
-                <div class="row clearfix" style="padding-right:0px;">
-                    <div class="col-md-3 column" style="float:right">
+                <div class="row clearfix" style="padding-right: 0px;">
+                    <
+                      @if (idenName == "admin")
+                      {
+                          <div class="container">
+                              <div class="row clearfix">
+                                  <div class="col-md-12 column">
+                                      <ul class="nav nav-tabs">
+                                          <li>
+                                              <a href="@Url.Content("~/UserAccount/Index")" >用户添加</a>
+                                          </li>
+                                          <li>
+                                              <a href="@Url.Content("~/ScheduleAddOrUpdate/Index")" >课表添加及修改</a>
+                                          </li>
+                                          <li class="dropdown pull-right">
+                                              <a href="@Url.Content("~/User/LoginOut")" style="color: black;">退出</a>
+                                          </li>
+                                          <li class="dropdown pull-right">
+                                              <a href="@Url.Content("~/User/passwordChanged")" style="color: black;">修改密码</a>
 
-                        <div style="padding: 30px 20px; float: right; color: black;">
-                            @{
-                                string idenName = HttpContext.Current.User.Identity.Name;
+                                          </li>
+                                          <li class="dropdown pull-right">
+                                              <a style="color: black;">欢迎您，@idenName</a>
+                                          </li>
+                                    </ul>
+                                  </div>
+                              </div>
+                          </div>
+                      }
+                    @if (idenName != "admin")
+                    {
+                        <div class="col-md-3 column" style="float: right">
+                            <div style="padding: 30px 20px; float: right; color: black;">
                                 <span>欢迎您，</span><span style="color: black">@idenName
-                                </span> @:&nbsp;
-                               if (idenName != "admin")
-                               {
+                                </span>
                                 <a href="@Url.Content("~/borrowInformation/requestCondition")" style="color:black">申请状态 &nbsp</a>
-                               }
-
-                               if (idenName == "admin")
-                               {
-                                <a href="@Url.Content("~/UserAccount/Index")" style="color: black;">用户添加</a>
-                                <a href="#" style="color: black;">课表添加及修改</a>
-                               }
                                 <a href="@Url.Content("~/User/passwordChanged")" style="color: black;">修改密码</a>
                                 <span><a href="@Url.Content("~/User/LoginOut")" style="color: black;">退出</a></span>
-                        
-                            }
+                            </div>
                         </div>
-                    </div>
+                    }
                 </div>
-
                 @RenderBody()
                 @Scripts.Render("~/bundles/jquery")
                 @RenderSection("scripts", required: false)
@@ -84,13 +103,10 @@
                     <div class="row clearfix">
                         <div class="col-md-12 column" style="padding: 0">
                             <nav class="navbar navbar-default" role="navigation">
-                                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2" style="background-color: rgb(26, 86, 149);">
-                                    <p style="font-size: 18px; text-align: center; color: white">Copyright &copy青海大学计算机系版权所有</p>
-                                    <br>
-                                    <p style="font-size: 18px; text-align: center; color: white">联系电话: 0971-5310365. 邮箱: 793940415@qq.com</p>
-                                    <br>
-                                    <p style="font-size: 18px; text-align: center; color: white">网站设计: 青海大学计算机系</p>
-                                    <br>
+                                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2" style="background-color: rgb(26, 86, 149); padding-top: 10px">
+                                    <p style="font-size: 18px; text-align: center; color: white; margin-bottom: 10px">Copyright &copy青海大学计算机系版权所有</p>
+                                    <p style="font-size: 18px; text-align: center; color: white; margin-bottom: 10px">联系电话: 0971-5310365. 邮箱: 793940415@qq.com</p>
+                                    <p style="font-size: 18px; text-align: center; color: white; margin-bottom: 10px">网站设计: 青海大学计算机系</p>
                                 </div>
                             </nav>
                         </div>

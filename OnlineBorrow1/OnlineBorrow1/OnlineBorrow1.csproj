@@ -126,6 +126,7 @@
     <Compile Include="Controllers\CheckController.cs" />
     <Compile Include="Controllers\CheckScheduleController.cs" />
     <Compile Include="Controllers\PrintController.cs" />
+    <Compile Include="Controllers\ScheduleAddOrUpdateController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\UserAccountController.cs" />
     <Compile Include="Migrations\201610311511378_InitialCreate.cs" />
@@ -160,10 +161,7 @@
     <Content Include="App_Data\Advice_log.ldf">
       <DependentUpon>Advice.mdf</DependentUpon>
     </Content>
-    <Content Include="App_Data\schedule.mdf" />
-    <Content Include="App_Data\schedule_log.ldf">
-      <DependentUpon>schedule.mdf</DependentUpon>
-    </Content>
+    <Content Include="assets\bootstrap\css\bootstrap-select.css" />
     <Content Include="assets\bootstrap\css\bootstrap-social.css" />
     <Content Include="assets\bootstrap\css\bootstrap-theme.css" />
     <Content Include="assets\bootstrap\css\bootstrap-theme.min.css" />
@@ -171,10 +169,12 @@
     <Content Include="assets\bootstrap\css\bootstrap.min.css" />
     <Content Include="assets\bootstrap\css\font-awesome.min.css" />
     <Content Include="assets\bootstrap\css\templatemo_style.css" />
+    <Content Include="assets\bootstrap\js\bootstrap-select.js" />
     <Content Include="assets\bootstrap\js\bootstrap.js" />
     <Content Include="assets\bootstrap\js\bootstrap.min.js" />
     <Content Include="assets\bootstrap\js\npm.js" />
     <Content Include="assets\css\chocolat.css" />
+    <Content Include="assets\css\jquery.multiselect.css" />
     <Content Include="assets\css\reset.css" />
     <Content Include="assets\css\style.css" />
     <Content Include="assets\css\style_advice.css" />
@@ -187,9 +187,12 @@
     <Content Include="assets\img\progress.gif" />
     <Content Include="assets\img\twitter.png" />
     <Content Include="assets\js\jquery-1.8.2.min.js" />
+    <Content Include="assets\js\jquery.min.js" />
     <Content Include="assets\js\scripts.js" />
     <Content Include="assets\js\supersized-init.js" />
     <Content Include="assets\js\supersized.3.2.7.min.js" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -244,6 +247,96 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="css\font-awesome.css" />
+    <Content Include="css\font-awesome.min.css" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\.gitignore" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\css\font-awesome-ie7.css" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\css\font-awesome-ie7.min.css" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\css\font-awesome.css" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\css\font-awesome.min.css" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\font\fontawesome-webfont.svg" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\css\prettify.css" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\css\pygments.css" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\font-awesome\font\fontawesome-webfont.svg" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\ico\favicon.ico" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\img\contribution-sample.png" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\img\fort_awesome.jpg" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\img\glyphicons-halflings-white.png" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\img\glyphicons-halflings.png" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\js\backbone.min.js" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\js\bootstrap-2.3.1.min.js" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\js\bootstrap-222.min.js" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\js\jquery-1.7.1.min.js" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\js\prettify.min.js" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\js\site.js" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\js\underscore.min.js" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\js\ZeroClipboard-1.1.7.min.js" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\js\ZeroClipboard-1.1.7.swf" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\cheatsheet.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\community.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\design.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\examples.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\get-started.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\icons.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\index.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\license.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\test.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\whats-new.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\ads\carbon-dark-vertical.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\ads\carbon-light-horizontal.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\ads\carbon-light-vertical.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\brand-license.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\cheatsheet.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\community.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\community\getting-support.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\community\project-milestones.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\community\reporting-bugs.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\community\requesting-new-icons.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\community\submitting-pull-requests.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\examples.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\examples\animated-spinner.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\examples\bordered-pulled.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\examples\bulleted-lists.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\examples\button-dropdowns.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\examples\button-groups.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\examples\buttons.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\examples\custom.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\examples\form-inputs.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\examples\inline-icons.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\examples\larger-icons.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\examples\navigation.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\examples\new.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\examples\rotated-flipped.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\examples\stacked.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\footer.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\get-started.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\icons.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\icons\brand.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\icons\currency.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\icons\directional.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\icons\medical.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\icons\new.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\icons\text-editor.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\icons\video-player.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\icons\web-application.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\jumbotron-slider.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\jumbotron.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\license.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\navbar.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\stripe-ad.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\stripe-social.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\tell-me-thanks.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\tests\rotated-flipped-inside-anchor.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\tests\rotated-flipped-inside-btn.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\tests\rotated-flipped.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\tests\stacked-inside-anchor.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\tests\stacked.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\thanks-to.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\whats-new.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\why.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_layouts\base.html" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_layouts\icon.html" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="assets\bootstrap\css\bootstrap-theme.css.map" />
@@ -252,6 +345,121 @@
     <Content Include="assets\img\backgrounds\Thumbs.db" />
     <Content Include="assets\img\Thumbs.db" />
     <Content Include="Images\Thumbs.db" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\.ruby-version" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\composer.json" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\CONTRIBUTING.md" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\font\fontawesome-webfont.eot" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\font\fontawesome-webfont.ttf" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\font\fontawesome-webfont.woff" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\font\FontAwesome.otf" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\Gemfile" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\Gemfile.lock" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\less\bootstrap.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\less\core.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\less\extras.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\less\font-awesome-ie7.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\less\font-awesome.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\less\icons.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\less\mixins.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\less\path.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\less\variables.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\package.json" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\README.md" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\scss\font-awesome-ie7.scss" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\scss\font-awesome.scss" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\scss\_bootstrap.scss" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\scss\_core.scss" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\scss\_extras.scss" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\scss\_icons.scss" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\scss\_mixins.scss" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\scss\_path.scss" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\scss\_variables.scss" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\font-awesome\font\fontawesome-webfont.eot" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\font-awesome\font\fontawesome-webfont.ttf" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\font-awesome\font\fontawesome-webfont.woff" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\font-awesome\font\FontAwesome.otf" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\font-awesome\less\bootstrap.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\font-awesome\less\core.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\font-awesome\less\extras.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\font-awesome\less\font-awesome-ie7.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\font-awesome\less\font-awesome.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\font-awesome\less\icons.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\font-awesome\less\mixins.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\font-awesome\less\path.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\font-awesome\less\variables.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\font-awesome\scss\font-awesome-ie7.scss" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\font-awesome\scss\font-awesome.scss" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\font-awesome\scss\_bootstrap.scss" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\font-awesome\scss\_core.scss" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\font-awesome\scss\_extras.scss" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\font-awesome\scss\_icons.scss" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\font-awesome\scss\_mixins.scss" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\font-awesome\scss\_path.scss" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\font-awesome\scss\_variables.scss" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\img\icon-flag.pdf" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\accordion.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\alerts.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\bootstrap.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\breadcrumbs.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\button-groups.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\buttons.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\carousel.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\close.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\code.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\component-animations.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\dropdowns.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\forms.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\grid.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\hero-unit.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\labels-badges.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\layouts.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\media.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\mixins.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\modals.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\navbar.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\navs.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\pager.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\pagination.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\popovers.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\progress-bars.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\reset.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\responsive-1200px-min.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\responsive-767px-max.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\responsive-768px-979px.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\responsive-navbar.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\responsive-utilities.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\responsive.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\scaffolding.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\sprites.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\tables.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\thumbnails.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\tooltip.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\type.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\utilities.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\variables.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\wells.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\lazy.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\mixins.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\responsive-1200px-min.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\responsive-767px-max.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\responsive-768px-979px.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\responsive-navbar.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\responsive.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\site.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\sticky-footer.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\assets\less\variables.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\CNAME" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\icons.yml" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\Makefile" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_includes\license-code.less" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_plugins\icon_page_generator.rb" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\src\_plugins\site.rb" />
+    <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\_config.yml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Images\1.jpg" />
     <Content Include="Images\121.png" />
@@ -267,6 +475,7 @@
     <Content Include="Images\logo.png" />
     <Content Include="Images\logo_1.png" />
     <Content Include="Images\xiaoxun.png" />
+    <Content Include="Scripts\bootstrap-select.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -309,6 +518,10 @@
     <Content Include="Views\Check\inforCheck.cshtml" />
     <Content Include="Views\Check\detailCheck.cshtml" />
     <Content Include="Views\Print\print.cshtml" />
+    <Content Include="Views\ScheduleAddOrUpdate\Index.cshtml" />
+    <Content Include="Views\ScheduleAddOrUpdate\Create.cshtml" />
+    <Content Include="Views\ScheduleAddOrUpdate\Edit.cshtml" />
+    <Content Include="Views\ScheduleAddOrUpdate\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="assets\bootstrap\fonts\" />
@@ -329,7 +542,7 @@
     <COMReference Include="Microsoft.Office.Core">
       <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
       <VersionMajor>2</VersionMajor>
-      <VersionMinor>8</VersionMinor>
+      <VersionMinor>5</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>
@@ -338,7 +551,7 @@
     <COMReference Include="Microsoft.Office.Interop.Excel">
       <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
       <VersionMajor>1</VersionMajor>
-      <VersionMinor>9</VersionMinor>
+      <VersionMinor>7</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>

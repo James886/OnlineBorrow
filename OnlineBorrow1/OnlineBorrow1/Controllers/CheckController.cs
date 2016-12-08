@@ -23,59 +23,44 @@ namespace OnlineBorrow1.Controllers
         [Authorize]
         public ActionResult inforCheck(int informationCategory = 0, int pages = 1)
         {
-            List<borrowInformation> borrowInformations = null;
-            borrowInformationContext infortionsContext = new borrowInformationContext();
-            List<borrowInformation> borrowInformation1 = new List<Models.borrowInformation>();
-            if (informationCategory == 2)
+            int type_id = 0;
+
+            type_id = informationCategory;
+
+            HttpCookie type_id_checkCookie = null;
+            if (Request.Cookies["type_id_check"] != null)
             {
 
-                borrowInformations = (from item in infortionsContext.borrowInformations.ToList()
-                                      orderby item.提交时间 descending
-                                      select item).ToList();
-                int a = borrowInformations.Count;
-                a = (a / 10) + 1;
-                if (pages < a)
-                {
-                    for (int i = (pages - 1) * 10; i < pages * 10; i++)
-                    {
-                        borrowInformation1.Add(borrowInformations[i]);
-                    }
-                }
-                if (pages == a)
-                {
-                    for (int i = (pages - 1) * 10; i < borrowInformations.Count; i++)
-                    {
-                        borrowInformation1.Add(borrowInformations[i]);
-                    }
-                }
+                type_id_checkCookie = Request.Cookies["type_id_check"];
             }
-
             else
             {
-                borrowInformations = (from item in infortionsContext.borrowInformations.ToList()
-                                      orderby item.提交时间 descending
-                                      where item.informationCategory == informationCategory
-                                      select item).ToList();
-
-                int a = borrowInformations.Count;
-                a = (a / 10) + 1;
-
-                if (pages < a)
-                {
-                    for (int i = (pages - 1) * 10; i < pages * 10; i++)
-                    {
-                        borrowInformation1.Add(borrowInformations[i]);
-                    }
-                }
-                if (pages == a)
-                {
-                    for (int i = (pages - 1) * 10; i < borrowInformations.Count; i++)
-                    {
-                        borrowInformation1.Add(borrowInformations[i]);
-                    }
-                }
+                type_id_checkCookie = new HttpCookie("type_id_check");
             }
-            return View(borrowInformation1);
+            type_id_checkCookie.Value = type_id.ToString();
+            Response.Cookies.Add(type_id_checkCookie);
+           
+            borrowInformationContext infortionsContext = new borrowInformationContext();
+            IEnumerable<borrowInformation> borrowInformations = null;
+            
+
+            if (informationCategory == 2)
+            {
+                borrowInformations = from items in infortionsContext.borrowInformations
+                                     orderby items.提交时间 descending
+                                     select items;
+            }
+            else
+            {
+                borrowInformations = from items in infortionsContext.borrowInformations
+                                     where items.informationCategory == informationCategory
+                                     orderby items.提交时间 descending
+                                     select items;
+            }
+            Paging paging = new Paging(borrowInformations, 11, 3, pages);
+            return View(paging);
+
+          
         }
 
         

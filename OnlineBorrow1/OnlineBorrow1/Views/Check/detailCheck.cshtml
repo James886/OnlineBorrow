@@ -2,18 +2,16 @@
 @{
     ViewBag.Title = "申请审核";
 }
+
 <style>
-    td { 
-        font-size:18.7px;
-    }
-    </style>
+    td { font-size: 18.7px; }
+</style>
 
 <div class="container"  style="background-color:white">
     <div class="row clearfix">
         <div class="col-md-12 column">
             @foreach (var item in Model)
-            {
-                 
+            {     
                 <form action="@Url.Content("~/borrowInformation/Update1")" method="post">
                     <table class="table table-bordered table-hover " style="border-radius: inherit">
                         <caption style="text-align: center; font-size: 40px; color: black; font-weight: bolder">
@@ -21,11 +19,9 @@
                             2016 —— 2017学年度 第一学期      
                         </caption>
                         <tbody>
-                            <tr>
-                                
+                            <tr>                       
                                 <td class="col-md-2" style="text-align:center" >单位名称
-                                </td>
-                                
+                                </td>                                
                                 <td  class="col-md-2" style="text-align:center">
                                     @item.单位名称
                                 </td>
@@ -125,12 +121,9 @@
                         </tbody>
                     </table>
                     <button type="submit" class="btn btn-primary btn-lg" style="float: right">批准</button>
-
                 </form>
             }
         </div>
-
-
         <h3>备注:</h3>
         <ol>
             <li>此申请表由借用人如实逐项填写，报计算机系实验室管理部审批（补课以及党团、班级、学生会、腾讯俱乐部、辩论赛等活动借用情况只需系实验室管理部审核，如遇承办考试、竞赛、讲座、培训、项目活动等特殊情况需报系领导审批）；审批通过后，持本表到计算机系楼门卫处领取相应机房的钥匙；

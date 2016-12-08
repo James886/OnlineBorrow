@@ -87,22 +87,10 @@ namespace OnlineBorrow1.Controllers
         }
 
         [Authorize]
-        public ActionResult requestCondition(int informationCategory = 1, int pages = 1)
+        public ActionResult requestCondition(int informationCategory = 2, int pages = 1)
         {
             int type_id = 0;
-           // List<borrowInformation> borrowInformations = null;
-            if (informationCategory == 0)
-            {
-                type_id = 0;
-            }
-            if (informationCategory == 1)
-            {
-                type_id = 1;
-            }
-            if (informationCategory == 2)
-            {
-                type_id = 2;
-            }
+            type_id = informationCategory;
             HttpCookie type_idCookie = null;
             if (Request.Cookies["type_id"] != null)
             {
@@ -137,25 +125,6 @@ namespace OnlineBorrow1.Controllers
             }
             Paging paging = new Paging(borrowInformations,6,3,pages);
             return View(paging);
-
-            /*
-            if (informationCategory == 2)
-            {
-                borrowInformations = (from item in db.borrowInformations.ToList()
-                                      where item.user_id == NUM
-                                      orderby item.提交时间 descending
-                                      select item).ToList();
-            }
-            else
-            {
-                borrowInformations = (from item in infortionsContext.borrowInformations.ToList()
-                                      orderby item.提交时间 descending
-                                      where item.informationCategory == informationCategory && item.user_id == NUM
-                                      select item).ToList();
-            }
-             * */
-
-           // return View(borrowInformations);
         }
 
       

@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<OnlineBorrow1.Models.borrowInformation>
-
 @{
     ViewBag.Title = "主页";
 }
@@ -11,41 +10,37 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 
-
 <div class="welcome" style="padding-left:0;padding-right:0;margin-left:0;margin-right:0;margin-top:0px;padding-top:0px;width:100%;">
-    <div class="container" style="border: 1px solid #ddd;padding:0">
-        <h3>欢迎访问</h3>
+    <div class="container" >
+        <h3 style="color:black">欢迎访问</h3>
         <div class="welcome-grids">
             <a href ="@Url.Content("~/borrowInformation/request")" target="_blank">
                 <div class="col-md-4 welcome-grid">
                     <div class="wel1 hvr-bounce-to-bottom">
-                        <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-                        <h4>实验室借用</h4>
-                        <p>实验室是我系教学的重要场所，规范实验室借用极为重要！</p>
+                        <i class="icon-edit icon-4x"></i>
+                        <h3 style="color:white; margin-top:10px;">实验室借用</h3>
+                       <p><q>从实验中获得知识,知识就是力量 </q>—— 培根 </p>
                     </div>
                 </div>
             </a>
-
             <a href ="@Url.Content("~/Schedule/schedule")" target="_blank">
                 <div class="col-md-4 welcome-grid">
                     <div class="wel2 hvr-bounce-to-bottom">
-                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                        <h4>实验室日常课表查询</h4>
-                        <p>有了实验室课表查询，从此再也不用担心撞车了！</p>
+                         <i class="icon-calendar icon-4x"></i>
+                        <h3 style="color:white;margin-top:10px;">课表查询</h3>
+                       <p><q>良药苦口利于病，忠言逆耳利于行 </q>——《论语》</p>
                     </div>
                 </div>
             </a>
-
             <a href ="@Url.Content("~/Advice/advice")" target="_blank">
                 <div class="col-md-4 welcome-grid">
                     <div class="wel3 hvr-bounce-to-bottom">
-                        <span class="glyphicon glyphicon-glass" aria-hidden="true"></span>
-                        <h4>意见和建议</h4>
+                       <i class="icon-comments-alt icon-4x"></i>
+                        <h3 style="color:white;margin-top:10px;">意见和建议</h3>
                         <p><q>良药苦口利于病，忠言逆耳利于行 </q>——《论语》</p>
                     </div>
                 </div>
             </a>
-
             <div class="clearfix"></div>
             <br />
         </div>

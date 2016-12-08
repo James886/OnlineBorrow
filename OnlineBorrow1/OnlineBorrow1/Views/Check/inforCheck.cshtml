@@ -1,6 +1,11 @@
-﻿@model IEnumerable<OnlineBorrow1.Models.borrowInformation>
+﻿@using OnlineBorrow1.Models;
+
+@model Paging
 @{
+    List<borrowInformation> curr_page_data = (List<borrowInformation>)Model.curr_page_data;
     ViewBag.Title = "申请列表";
+    HttpCookie CurrCookie = Request.Cookies["type_id_check"];
+    int NUM = Convert.ToInt32(CurrCookie.Value);
    
 }
 
@@ -11,58 +16,30 @@
 <link rel="stylesheet" href="@Url.Content("~/assets/css/chocolat.css")"type="text/css">
 
 <style>
-    td { 
-        font-size:18.7px;
-    }
-    </style>
+    td { font-size: 18.7px; }
+</style>
 <div class="container" style="background-color: white">
     <div class="row clearfix">
         <div class="col-md-12 column">
             <div style="margin-top: 0px">
                 <img src ="@Url.Content("~/Images/biaoyu.jpg")" style="width:100%" />
             </div>
-            <div class="col-md-6 column">
-            <ul class="pagination" style="float: left; margin-top: 20px; padding-top: 0px;">
+            <div class="col-md-12 column" style="margin-top: 20px; padding-top: 0px; margin-left: 0px; padding-left: 0px;">
+                <ul class="pagination" style="float: left; margin-top: 20px; padding-top: 0px; margin-left: 0px; padding-left: 0px;">
 
-                <li>
-                    <a href="~/Check/inforCheck?informationCategory=0">未审核</a>
-                </li>
-                <li>
-                    <a href="~/Check/inforCheck?informationCategory=1">已审核</a>
-                </li>
-                <li>
-                    <a href="~/Check/inforCheck?informationCategory=2">全部记录</a>
-                </li>
-            </ul>
-                </div>
-           <div class="col-md-6 column" >
-            <ul class="pagination" style="float:right;">
-				<li>
-					 <a href="#">前一页</a>
-				</li>
-				<li>
-					 <a href="~/Check/inforCheck?pages=1">1</a>
-				</li>
-				<li>
-					 <a href="~/Check/inforCheck?pages=2">2</a>
-				</li>
-				<li>
-					 <a href="~/Check/inforCheck?pages=3">3</a>
-				</li>
-				<li>
-					 <a href="~/Check/inforCheck?pages=4">4</a>
-				</li>
-				<li>
-					 <a href="~/Check/inforCheck?pages=5">5</a>
-				</li>
-				<li>
-					 <a href="#">下一页</a>
-				</li>
-			</ul>
-                </div>
+                    <li>
+                        <a href="~/Check/inforCheck?informationCategory=0">未审核</a>
+                    </li>
+                    <li>
+                        <a href="~/Check/inforCheck?informationCategory=1">已审核</a>
+                    </li>
+                    <li>
+                        <a href="~/Check/inforCheck?informationCategory=2">全部记录</a>
+                    </li>
+                </ul>
+            </div>
             <table class="table table-bordered">
                 <tr>
-
                     <th class="col-md-1" style="text-align: center;">
                         <b>单位名称</b>
                     </th>
@@ -84,134 +61,156 @@
                     <th class="col-md-3" style="text-align: center;" colspan="2">
                         <b>审核状态</b>
                     </th>
-
                 </tr>
-                <tbody>
-
-                    @if (Model == null || Model.Count() == 0)
+                @{
+                    borrowInformation[] borrowInformationArray = curr_page_data.ToArray();
+                    for (int i = 0; i < curr_page_data.Count(); i++)
                     {
-                        <tr>
-                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd" colspan="7">
-                                <p>还没有任何待审核信息！！！ <span style="float: right">2016.10.17</span></p>
-
-                            </td>
-                        </tr>
-                    }
-
-                    else
-                    {
-
-                        foreach (var item in Model)
+                    <tbody>
+                        @if (Model == null || curr_page_data.Count() == 0)
                         {
-                            if (item.informationCategory == 0)
+                            <tr>
+                                <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd" colspan="7">
+                                    <p>还没有任何待审核信息！！！ <span style="float: right">2016.10.17</span></p>
+                                </td>
+                            </tr>
+                        }
+
+                        else
+                        {
+                            if (borrowInformationArray[i].informationCategory == 0)
                             {
-                        <tr class="warning">
-
-                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
-                                <div style="padding-top: 5px">
-                                    <p>@item.单位名称</p>
-                                </div>
-                            </td>
-                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
-                                <div style="padding-top: 5px">
-                                    <p>@item.借用人</p>
-                                </div>
-                            </td>
-                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
-                                <div style="padding-top: 5px">
-                                    <p>@item.借用人身份</p>
-                                </div>
-                            </td>
-                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
-                                <div style="padding-top: 5px">
-                                    <p>@item.借用机房</p>
-                                </div>
-                            </td>
-                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
-                                <div style="padding-top: 5px">
-                                    <p>
-
-                                        @if (@item.用途 != null)
-                                        {
-                                            @item.用途
-                                        }
-                                        else
-                                        {
-                                            @item.其它
-                                        }
-                                    </p>
-                                </div>
-                            </td>
-
-                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
-                                <p><span style="float: right">@item.提交时间</span></p>
-                            </td>
-
-                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
-                                
-                                    <a href="~/Check/detailCheck?information_id=@item.information_id" type="button" class="btn btn-default btn-link" >未审核</a>
-                                
-                                
-                            </td>
-                        </tr>
+                            <tr class="warning">
+                                <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
+                                    <div style="padding-top: 5px">
+                                        <p>@borrowInformationArray[i].单位名称</p>
+                                    </div>
+                                </td>
+                                <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
+                                    <div style="padding-top: 5px">
+                                        <p>@borrowInformationArray[i].借用人</p>
+                                    </div>
+                                </td>
+                                <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
+                                    <div style="padding-top: 5px">
+                                        <p>@borrowInformationArray[i].借用人身份</p>
+                                    </div>
+                                </td>
+                                <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
+                                    <div style="padding-top: 5px">
+                                        <p>@borrowInformationArray[i].借用机房</p>
+                                    </div>
+                                </td>
+                                <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
+                                    <div style="padding-top: 5px">
+                                        <p>
+                                            @if (borrowInformationArray[i].用途 != null)
+                                            {
+                                                @borrowInformationArray[i].用途
+                                            }
+                                            else
+                                            {
+                                                @borrowInformationArray[i].其它
+                                            }
+                                        </p>
+                                    </div>
+                                </td>
+                                <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
+                                    <p><span style="float: right">@borrowInformationArray[i].提交时间</span></p>
+                                </td>
+                                <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
+                                    <a href="~/Check/detailCheck?information_id=@borrowInformationArray[i].information_id" type="button" class="btn btn-default btn-link" >审核</a>
+                                </td>
+                            </tr>
                             }
                             else
                             {
-                                <tr class="success">
-
-                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
-                                <div style="padding-top: 5px">
-                                    <p>@item.单位名称</p>
-                                </div>
-                            </td>
-                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
-                                <div style="padding-top: 5px">
-                                    <p>@item.借用人</p>
-                                </div>
-                            </td>
-                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
-                                <div style="padding-top: 5px">
-                                    <p>@item.借用人身份</p>
-                                </div>
-                            </td>
-                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
-                                <div style="padding-top: 5px">
-                                    <p>@item.借用机房</p>
-                                </div>
-                            </td>
-                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
-                                <div style="padding-top: 5px">
-                                    <p>
-
-                                        @if (@item.用途 != null)
-                                        {
-                                            @item.用途
-                                        }
-                                        else
-                                        {
-                                            @item.其它
-                                        }
-                                    </p>
-                                </div>
-                            </td>
-
-                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
-                                <p><span style="float: right">@item.提交时间</span></p>
-                            </td>
-
-                            <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
-                               
-                                    <p>已审核</p>
-                                
-                            </td>
-                        </tr>
+                            <tr class="success">
+                                <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
+                                    <div style="padding-top: 5px">
+                                        <p>@borrowInformationArray[i].单位名称</p>
+                                    </div>
+                                </td>
+                                <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
+                                    <div style="padding-top: 5px">
+                                        <p>@borrowInformationArray[i].借用人</p>
+                                    </div>
+                                </td>
+                                <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
+                                    <div style="padding-top: 5px">
+                                        <p>@borrowInformationArray[i].借用人身份</p>
+                                    </div>
+                                </td>
+                                <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
+                                    <div style="padding-top: 5px">
+                                        <p>@borrowInformationArray[i].借用机房</p>
+                                    </div>
+                                </td>
+                                <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
+                                    <div style="padding-top: 5px">
+                                        <p>
+                                            @if (borrowInformationArray[i].用途 != null)
+                                            {
+                                                @borrowInformationArray[i].用途
+                                            }
+                                            else
+                                            {
+                                                @borrowInformationArray[i].其它
+                                            }
+                                        </p>
+                                    </div>
+                                </td>
+                                <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
+                                    <p><span style="float: right">@borrowInformationArray[i].提交时间</span></p>
+                                </td>
+                                <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
+                                    <p>通过</p>
+                                </td>
+                            </tr>
                             }
-
+                        }
+                    </tbody>
+                    }
+                }
+            </table>
+            @{
+                int prePageId = (Model.curr_page_index > 1) ? Model.curr_page_index - 1 : 1;
+                int nextPageId = (Model.curr_page_index < Model.sum_pages) ? Model.curr_page_index + 1 : Model.sum_pages;
+            }
+            <div class="center-block" style="width: 40%">
+                <ul class="pagination " style="">
+                    <li>
+                        <a href="@Url.Content("~/Check/inforCheck?&informationCategory=" + NUM + "&pages = 1")">首页</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Content("~/Check/inforCheck?&informationCategory=" + NUM + "&pages=" + prePageId)">上一页</a>
+                    </li>
+                    @for (int i = Model.start_page_index; i <= Model.end_page_index; i++)
+                    {
+                        if (Model.curr_page_index == i)
+                        {
+                        <li>
+                            <a  href="@Url.Content("~/Check/inforCheck?&informationCategory=" + NUM + "&pages=" + i)" style="color:black;"><strong>@i</strong></a>
+                        </li>
+                        }
+                        else
+                        {
+                        <li>
+                            <a  href="@Url.Content("~/Check/inforCheck?&informationCategory=" + NUM + "&pages=" + i)" ><strong>@i</strong></a>
+                        </li>
                         }
                     }
-                </tbody>
-            </table>
-
+                    <li>
+                        <a href="@Url.Content("~/Check/inforCheck?&informationCategory=" + NUM + "&pages=" + nextPageId)">下一页</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Content("~/Check/inforCheck?&informationCategory=" + NUM + "&pages=" + Model.sum_pages)">末页</a>
+                    </li>
+                    <li>
+                        <span>@Model.curr_page_index/@Model.sum_pages<span>页</span></span>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
