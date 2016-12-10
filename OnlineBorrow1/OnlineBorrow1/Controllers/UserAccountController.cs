@@ -16,10 +16,6 @@ using System.Reflection;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
-
-
-
-
 namespace OnlineBorrow1.Controllers
 {
 
@@ -54,35 +50,6 @@ namespace OnlineBorrow1.Controllers
             }
             return View(user);
         }
-
-        //
-        // GET: /User/Create
-        /*
-        public ActionResult Create()
-        {
-            return View();
-        }
-        */
-        //
-        // POST: /User/Create
-        
-        /*
-        [HttpPost]
-        public ActionResult Create(User user)
-        {
-
-            
-
-            if (ModelState.IsValid)
-            {
-                db.Users.Add(user);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(user);
-        }
-        */
 
          [Authorize]
         public ActionResult Edit(int id = 0)
@@ -129,72 +96,6 @@ namespace OnlineBorrow1.Controllers
             return RedirectToAction("Index");
         }
 
-
-/*
-        public System.Data.DataTable GetExcelTableByOleDB(string strExcelPath, string tableName)
-        {
-            try
-            {
-                UserContext userContext = new UserContext();
-
-                DataTable dtExcel = new DataTable();
-
-                DataSet ds = new DataSet();
-
-                string strExtension = System.IO.Path.GetExtension(strExcelPath);
-
-                string strFileName = System.IO.Path.GetFileName(strExcelPath);
-
-                OleDbConnection objConn = null;
-
-                switch (strExtension)
-                {
-                    case ".xls":
-                        objConn = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + strExcelPath + ";" + "Extended Properties=\"Excel 8.0;HDR=NO;IMEX=1;\"");
-                        break;
-                    case ".xlsx":
-                        objConn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + strExcelPath + ";" + "Extended Properties=\"Excel 12.0;HDR=NO;IMEX=1;\"");
-                        break;
-                    default:
-                        objConn = null;
-                        break;
-                }
-
-                if (objConn == null)
-                {
-                    return null;
-                }
-
-                objConn.Open();
-
-                System.Data.DataTable schemaTable = objConn.GetOleDbSchemaTable(System.Data.OleDb.OleDbSchemaGuid.Tables, null);
-
-                string tableNameTT = schemaTable.Rows[0][2].ToString().Trim();
-
-                string strSql = "select * from [" + tableName + "]";
-
-                OleDbCommand objCmd = new OleDbCommand(strSql, objConn);
-
-                OleDbDataAdapter myData = new OleDbDataAdapter(strSql, objConn);
-
-                myData.Fill(ds, tableName);//填充数据
-
-                objConn.Close();
-
-                //dtExcel即为excel文件中指定表中存储的信息
-
-                dtExcel= ds.Tables[tableName];
-                 
-                 return dtExcel;
-            }
-            catch (Exception ex)
-            {
-
-                return null;
-
-            }
-        }
- * */
         #region 批量导入基站
          [Authorize]
         public ActionResult Create()
@@ -255,8 +156,10 @@ namespace OnlineBorrow1.Controllers
             for (int i = 1; i <= 43; i++)  //第一个人的成绩就是翟伟鹏：73 坐标为第4行 第3列
             {
                 string excelData = ((Excel.Range)ws.Cells[i, 1]).Text.ToString();
+                string excelData_category = ((Excel.Range)ws.Cells[i, 2]).Text.ToString();
                 users.username = excelData;
                 users.password = excelData;
+                users.userCategory = Convert.ToInt32(excelData_category);
 
                 UserContext userContext = new UserContext();
 

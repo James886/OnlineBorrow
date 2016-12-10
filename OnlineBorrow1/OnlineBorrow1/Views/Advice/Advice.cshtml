@@ -3,18 +3,45 @@
 @{
     List<Advice> curr_page_data = (List<Advice>)Model.curr_page_data;
     ViewBag.Title = "留言板";
+    HttpCookie CurrCookie = Request.Cookies["adviceCategory"];
+    int NUM = Convert.ToInt32(CurrCookie.Value);
     
 }
 
 <link href="@Url.Content("~/assets/bootstrap/css/bootstrap.css")" rel="stylesheet">
 <link href="@Url.Content("~/assets/css/style_advice.css")" rel="stylesheet" type="text/css" media="all" />
 <link rel="stylesheet" href="@Url.Content("~/assets/css/chocolat.css")"type="text/css">
-
+<style>
+    a:link { text-decoration: none; }
+    a:visited { text-decoration: none; }
+    a:hover { text-decoration: none; }
+    a:active { text-decoration: none; }
+</style>
 <div class="container" style="background-color: white">
     <div class="row clearfix">
         <div class="col-md-12 column">
             <img src ="@Url.Content("~/Images/advice.jpg")"  style="width:100%" />
-          
+
+            <div class="form-group" style="padding-top: 10px">
+                 <div class="form-group" style="padding-top: 10px; padding-bottom: 40px; border: 2px dashed  #ddd">
+                <label for="inputEmail3" class="col-sm-2 control-label" style="font-size: 20px">留言类别</label>
+                <div class="col-sm-2">
+                    <a  href="@Url.Content("~/Advice/Advice?title=1")" style="font-size: 20px;">设备使用情况</a>
+                </div>
+                <div class="col-sm-2">
+                    <a  href="@Url.Content("~/Advice/Advice?title=2")" style="font-size: 20px">卫生情况</a>
+                </div>
+                <div class="col-sm-2">
+                    <a  href="@Url.Content("~/Advice/Advice?title=3")" style="font-size: 20px">机房改进</a>
+                </div>
+                <div class="col-sm-2">
+                    <a  href="@Url.Content("~/Advice/Advice?title=4")" style="font-size: 20px">钥匙借用</a>
+                </div>
+                <div class="col-sm-2">
+                    <a  href="@Url.Content("~/Advice/Advice?title=0")" style="font-size: 20px">其他</a>
+                </div>
+                    </div>
+            </div>
             @{
                 Advice[] AdviceArray = curr_page_data.ToArray();
                 int j = 1;
@@ -31,7 +58,6 @@
                                 </td>
                             </tr>
                         }
-
                         <tr>
                             <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd">
                                 <p>@(j++)# <span style="float: right">@AdviceArray[i].time</span></p>
@@ -39,10 +65,6 @@
                                 <p><b>内容：</b>@AdviceArray[i].内容</p>
                             </td>
                         </tr>
-                        <!--
-                       
-                            -->
-
                     </tbody>
                 </table>
                 
@@ -53,71 +75,81 @@
 </div>
 
 <div class="container">
-  @{
-                int prePageId = (Model.curr_page_index > 1) ? Model.curr_page_index - 1 : 1;
-                int nextPageId = (Model.curr_page_index < Model.sum_pages) ? Model.curr_page_index + 1 : Model.sum_pages;
-            }
-            
-                <div class="center-block" style="width:40%">
-            <ul class="pagination " >
-                <li>
-                    <a href="@Url.Content("~/Advice/Advice?pages = 1")">首页</a>
-                </li>
-                <li>
-                    <a href="@Url.Content("~/Advice/Advice?@pages=" + prePageId)">上一页</a>
-                </li>
-                @for (int i = Model.start_page_index; i <= Model.end_page_index; i++)
+    @{
+        int prePageId = (Model.curr_page_index > 1) ? Model.curr_page_index - 1 : 1;
+        int nextPageId = (Model.curr_page_index < Model.sum_pages) ? Model.curr_page_index + 1 : Model.sum_pages;
+    }
+
+    <div class="center-block" style="width: 40%">
+        <ul class="pagination ">
+            <li>
+                <a href="@Url.Content("~/Advice/Advice?&title=" + NUM + "&pages = 1")">首页</a>
+            </li>
+            <li>
+                <a href="@Url.Content("~/Advice/Advice?&title=" + NUM + "&pages=" + prePageId)">上一页</a>
+            </li>
+            @for (int i = Model.start_page_index; i <= Model.end_page_index; i++)
+            {
+                if (Model.curr_page_index == i)
                 {
-                    if (Model.curr_page_index == i)
-                    {
-                    <li>
-                        <a  href="@Url.Content("~/Advice/Advice?&pages=" + i)" style="color:black;"><strong>@i</strong></a>
-                    </li>
-                    }
-                    else
-                    {
-                         <li>
-                        <a  href="@Url.Content("~/Advice/Advice?&pages=" + i)"><strong>@i</strong></a>
-                    </li>
-                    }
+                <li>
+                    <a  href="@Url.Content("~/Advice/Advice?&title=" + NUM + "&pages=" + i)" style="color:black;"><strong>@i</strong></a>
+                </li>
                 }
+                else
+                {
                 <li>
-                    <a href="@Url.Content("~/Advice/Advice?&pages=" + nextPageId)">下一页</a>
+                    <a  href="@Url.Content("~/Advice/Advice?&title=" + NUM + "&pages=" + i)"><strong>@i</strong></a>
                 </li>
-                <li>
-                    <a href="@Url.Content("~/Advice/Advice?&pages=" + Model.sum_pages)">末页</a>
-                </li>
-                <li>
-                    <span>@Model.curr_page_index/@Model.sum_pages<span>页</span></span>
-                </li>
-            </ul>
-                </div>
-               
+                }
+            }
+            <li>
+                <a href="@Url.Content("~/Advice/Advice?&title=" + NUM + "&pages=" + nextPageId)">下一页</a>
+            </li>
+            <li>
+                <a href="@Url.Content("~/Advice/Advice?&title=" + NUM + "&pages=" + Model.sum_pages)">末页</a>
+            </li>
+            <li>
+                <span>@Model.curr_page_index/@Model.sum_pages<span>页</span></span>
+            </li>
+        </ul>
     </div>
+
+</div>
 
 <div id="contact" class="get-in-touch">
     <div class="container" style="background-color: white">
         <div class="get-info text-center">
-            <h3>建议</h3>
+            <h3 style="color:black;">建议</h3>
         </div>
     </div>
 </div>
+@{
+    string idenName = HttpContext.Current.User.Identity.Name;
+}
+@if (idenName != "admin")
+{
+    <div class="contact-us">
+        <div class="container" style="background-color: white">
 
-<div class="contact-us">
-    <div class="container" style="background-color: white">
-
-        <div class="col-md-12 column">
-            <div class="contact-info">
-                <form action="@Url.Content("~/Advice/SaveAdvice")" method="post">
-                    <input type="text" name="name" id="name" placeholder="Your Name" required>
-                    <input type="text" name="phone" id="phone" placeholder="Your Phone" required>
-                    <input type="text" name="title" id="title" placeholder="Your Title" required>
-                    <textarea name="content" id="content" placeholder="Your Message" required></textarea>
-                    <input type="submit" value="发送">
-                </form>
+            <div class="col-md-12 column">
+                <div class="contact-info">
+                    <form action="@Url.Content("~/Advice/SaveAdvice")" method="post">
+                        <input type="text" name="name" id="name" placeholder="Your Name" required>
+                        <label>类别</label>
+                        <select class="selectpicker" style="height: 46px;" name="title" id="title">
+                            <option value="1">设备使用情况</option>
+                            <option value="2">卫生情况</option>
+                            <option value="3">机房改进</option>
+                            <option value="4">钥匙借用</option>
+                            <option value="0">其他</option>
+                        </select>
+                        <textarea name="content" id="content" placeholder="Your Message" required></textarea>
+                        <input type="submit" value="发送">
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
+}
 

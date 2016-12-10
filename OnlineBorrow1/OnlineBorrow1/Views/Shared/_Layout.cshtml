@@ -12,13 +12,57 @@
     <link rel="stylesheet" href="@Url.Content("~/Font-Awesome-3.2.1/Font-Awesome-3.2.1/css/font-awesome.min.css")">
     <link rel="shortcut icon" href="~/Images/title_logo.png">
     <script src="~/assets/js/jquery.min.js"></script>
-    <script src="~/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/assets/bootstrap/js/bootstrap.js"></script>
+    <link href="~/css/style.css" rel="stylesheet" type="text/css" />
+    <script>
+        $(document).ready(function () {
+
+            /* 	1st example	*/
+
+            /// wrap inner content of each anchor with first layer and append background layer
+            $("#menu1 li a").wrapInner('<span class="out"></span>').append('<span class="bg"></span>');
+
+            // loop each anchor and add copy of text content
+            $("#menu1 li a").each(function () {
+                $('<span class="over">' + $(this).text() + '</span>').appendTo(this);
+            });
+
+            $("#menu1 li a").hover(function () {
+                // this function is fired when the mouse is moved over
+                $(".out", this).stop().animate({ 'top': '40px' }, 250); // move down - hide
+                $(".over", this).stop().animate({ 'top': '0px' }, 250); // move down - show
+                $(".bg", this).stop().animate({ 'top': '0px' }, 120); // move down - show
+
+            }, function () {
+                // this function is fired when the mouse is moved off
+                $(".out", this).stop().animate({ 'top': '0px' }, 250); // move up - show
+                $(".over", this).stop().animate({ 'top': '-40px' }, 250); // move up - hide
+                $(".bg", this).stop().animate({ 'top': '-40px' }, 120); // move up - hide
+            });
+
+            /*	2nd example	*/
+
+            $("#menu2 li a").wrapInner('<span class="out"></span>');
+
+            $("#menu2 li a").each(function () {
+                $('<span class="over">' + $(this).text() + '</span>').appendTo(this);
+            });
+
+            $("#menu2 li a").hover(function () {
+                $(".out", this).stop().animate({ 'top': '40px' }, 300); // move down - hide
+                $(".over", this).stop().animate({ 'top': '0px' }, 300); // move down - show
+
+            }, function () {
+                $(".out", this).stop().animate({ 'top': '0px' }, 300); // move up - show
+                $(".over", this).stop().animate({ 'top': '-40px' }, 300); // move up - hide
+            });
+        });
+    </script>
 </head>
 <body style="background-color: white">
     <div class="container" style="width: 100%; margin: 0px; padding: 0px;">
         <div class="row clearfix" style="padding-right: 0px; margin-right: 0px;">
             <div class="col-md-12 column">
-
                 <div class="row clearfix" style="background-color: rgb(26, 86, 149);">
                     <div class="col-md-2 column">
                         <div class="logo">
@@ -37,11 +81,10 @@
                                 }
                                 if (idenName == "admin")
                                 {
-
                                 <a href="@Url.Content("~/Check/inforCheck")">
                                     <img src="/Images/logo_1.png" /></a>
                                 }
-                             }
+                            }
                         </div>
                     </div>
                     <div class="col-md-3 column">
@@ -53,57 +96,54 @@
                         </div>
                     </div>
                 </div>
-                <div class="row clearfix" style="padding-right: 0px;">
-                    <
-                      @if (idenName == "admin")
-                      {
-                          <div class="container">
-                              <div class="row clearfix">
-                                  <div class="col-md-12 column">
-                                      <ul class="nav nav-tabs">
-                                          <li>
-                                              <a href="@Url.Content("~/UserAccount/Index")" >用户添加</a>
-                                          </li>
-                                          <li>
-                                              <a href="@Url.Content("~/ScheduleAddOrUpdate/Index")" >课表添加及修改</a>
-                                          </li>
-                                          <li class="dropdown pull-right">
-                                              <a href="@Url.Content("~/User/LoginOut")" style="color: black;">退出</a>
-                                          </li>
-                                          <li class="dropdown pull-right">
-                                              <a href="@Url.Content("~/User/passwordChanged")" style="color: black;">修改密码</a>
-
-                                          </li>
-                                          <li class="dropdown pull-right">
-                                              <a style="color: black;">欢迎您，@idenName</a>
-                                          </li>
-                                    </ul>
-                                  </div>
-                              </div>
-                          </div>
-                      }
-                    @if (idenName != "admin")
-                    {
-                        <div class="col-md-3 column" style="float: right">
-                            <div style="padding: 30px 20px; float: right; color: black;">
-                                <span>欢迎您，</span><span style="color: black">@idenName
-                                </span>
-                                <a href="@Url.Content("~/borrowInformation/requestCondition")" style="color:black">申请状态 &nbsp</a>
-                                <a href="@Url.Content("~/User/passwordChanged")" style="color: black;">修改密码</a>
-                                <span><a href="@Url.Content("~/User/LoginOut")" style="color: black;">退出</a></span>
-                            </div>
-                        </div>
-                    }
-                </div>
-                @RenderBody()
-                @Scripts.Render("~/bundles/jquery")
-                @RenderSection("scripts", required: false)
-
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div id="menu2" class="menu" style="width: 100%;">
+            @if (idenName != "admin")
+            {
+                <ul>
+                    <li><a href="~/borrowInformation/Index">首　　页</a></li>
+                    <li><a href="~/borrowInformation/request">实验室借用</a></li>
+                    <li><a href="~/Schedule/schedule">课表查询</a></li>
+                    <li><a href="~/Advice/Advice">意见和建议</a></li>
+                </ul>
+                <ul class="nav navbar-right">
+                    <li style="color: white; font-size: 18.7px;">欢迎用户，<span>@idenName </span></li>
+                    <li><a href="@Url.Content("~/borrowInformation/requestCondition")" >申请状态</a></li>
+                    <li><a href="@Url.Content("~/User/passwordChanged")" >修改密码</a></li>
+                    <li><a href="@Url.Content("~/User/LoginOut")" >退     出</a></li>
+                </ul>
+            }
+            else
+            {
+                <ul>
+                    <li><a href="~/Check/inforCheck">首　　页</a></li>
+                    <li><a href="~/UserAccount/Index">用户管理</a></li>
+                    <li><a href="~/ScheduleAddOrUpdate/Index">课表管理</a></li>
+                    <li><a href="~/Advice/Advice">意见和建议</a></li>
+                </ul>
+                <ul class="nav navbar-right">
+                    <li style="color: white; font-size: 18.7px;">管理员：<span>@idenName </span></li>
+                    <li><a href="@Url.Content("~/User/passwordChanged")" >修改密码</a></li>
+                    <li><a href="@Url.Content("~/User/LoginOut")" >退     出</a></li>
+                </ul>
+            }
+            <div class="cls"></div>
+        </div>
+    </div>
+    @RenderBody()
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+    <div class="container" style="width: 100%; margin: 0px; padding: 0px;">
+        <div class="row clearfix" style="padding-right: 0px; margin-right: 0px;">
+            <div class="col-md-12 column">
                 <div id="footer">
                     <div class="row clearfix">
                         <div class="col-md-12 column" style="padding: 0">
                             <nav class="navbar navbar-default" role="navigation">
-                                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2" style="background-color: rgb(26, 86, 149); padding-top: 10px">
+                                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2" style="background-color: rgb(87, 85, 85); padding-top: 10px">
                                     <p style="font-size: 18px; text-align: center; color: white; margin-bottom: 10px">Copyright &copy青海大学计算机系版权所有</p>
                                     <p style="font-size: 18px; text-align: center; color: white; margin-bottom: 10px">联系电话: 0971-5310365. 邮箱: 793940415@qq.com</p>
                                     <p style="font-size: 18px; text-align: center; color: white; margin-bottom: 10px">网站设计: 青海大学计算机系</p>

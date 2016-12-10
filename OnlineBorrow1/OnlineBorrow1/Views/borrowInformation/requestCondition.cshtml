@@ -31,7 +31,6 @@
 
             <table class="table table-bordered">
                 <tr>
-
                     <th class="col-md-1" style="text-align: center;">
                         <b>单位名称</b>
                     </th>
@@ -56,12 +55,9 @@
                     <th class="col-md-1" style="text-align: center;">
                         <b>打印</b>
                     </th>
-
                 </tr>
-
                 @{
-                    borrowInformation[] borrowInformationArray = curr_page_data.ToArray();
-                    
+                    borrowInformation[] borrowInformationArray = curr_page_data.ToArray();          
                     <tbody>
 
                         @if (curr_page_data.Count() == 0)
@@ -73,7 +69,6 @@
                                 </td>
                             </tr>
                         }
-
                         else
                         {
                             for (int i = 0; i < curr_page_data.Count(); i++)
@@ -105,7 +100,6 @@
                                 <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
                                     <div style="padding-top: 5px">
                                         <p>
-
                                             @if (borrowInformationArray[i].用途 != null)
                                             {
                                                 @borrowInformationArray[i].用途
@@ -117,9 +111,8 @@
                                         </p>
                                     </div>
                                 </td>
-
                                 <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
-                                    <p><span style="float: right">@borrowInformationArray[i].提交时间</span></p>
+                                    <p><span style="text-align:center;">@borrowInformationArray[i].提交时间.ToString("yyyy-MM-dd")</span></p>
                                 </td>
 
                                 <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
@@ -147,7 +140,6 @@
                                 else
                                 {
                             <tr class="success">
-
                                 <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
                                     <div style="padding-top: 5px">
                                         <p>@borrowInformationArray[i].单位名称</p>
@@ -171,7 +163,6 @@
                                 <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
                                     <div style="padding-top: 5px">
                                         <p>
-
                                             @if (borrowInformationArray[i].用途 != null)
                                             {
                                                 @borrowInformationArray[i].用途
@@ -183,9 +174,8 @@
                                         </p>
                                     </div>
                                 </td>
-
                                 <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
-                                    <p><span style="float: right">@borrowInformationArray[i].提交时间</span></p>
+                                    <p><span style="text-align:center;">@borrowInformationArray[i].提交时间.ToString("yyyy-MM-dd")</span></p>
                                 </td>
 
                                 <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
@@ -223,31 +213,31 @@
             <div class="center-block" style="width: 40%">
                 <ul class="pagination ">
                     <li>
-                        <a type="button" class="btn btn-default" href="@Url.Content("~/borrowInformation/requestCondition?&informationCategory=" + NUM + "&pages = 1")">首页</a>
+                        <a href="@Url.Content("~/borrowInformation/requestCondition?&informationCategory=" + NUM + "&pages = 1")">首页</a>
                     </li>
                     <li>
-                        <a type="button" class="btn btn-default" href="@Url.Content("~/borrowInformation/requestCondition?&informationCategory=" + NUM + "&pages=" + prePageId)">上一页</a>
+                        <a href="@Url.Content("~/borrowInformation/requestCondition?&informationCategory=" + NUM + "&pages=" + prePageId)">上一页</a>
                     </li>
                     @for (int i = Model.start_page_index; i <= Model.end_page_index; i++)
                     {
                         if (Model.curr_page_index == i)
                         {
                         <li>
-                            <a  type="button" class="btn btn-default" href="@Url.Content("~/borrowInformation/requestCondition?&informationCategory=" + NUM + "&pages=" + i)" style="color:black;"><strong>@i</strong></a>
+                            <a  href="@Url.Content("~/borrowInformation/requestCondition?&informationCategory=" + NUM + "&pages=" + i)" style="color:black;"><strong>@i</strong></a>
                         </li>
                         }
                         else
                         {
                         <li>
-                            <a  type="button" class="btn btn-default" href="@Url.Content("~/borrowInformation/requestCondition?&informationCategory=" + NUM + "&pages=" + i)"><strong>@i</strong></a>
+                            <a href="@Url.Content("~/borrowInformation/requestCondition?&informationCategory=" + NUM + "&pages=" + i)"><strong>@i</strong></a>
                         </li>
                         }
                     }
                     <li>
-                        <a type="button" class="btn btn-default" href="@Url.Content("~/borrowInformation/requestCondition?&informationCategory=" + NUM + "&pages=" + nextPageId)">下一页</a>
+                        <a href="@Url.Content("~/borrowInformation/requestCondition?&informationCategory=" + NUM + "&pages=" + nextPageId)">下一页</a>
                     </li>
                     <li>
-                        <a type="button" class="btn btn-default" href="@Url.Content("~/borrowInformation/requestCondition?&informationCategory=" + NUM + "&pages=" + Model.sum_pages)">末页</a>
+                        <a href="@Url.Content("~/borrowInformation/requestCondition?&informationCategory=" + NUM + "&pages=" + Model.sum_pages)">末页</a>
                     </li>
                     <li>
                         <span>@Model.curr_page_index/@Model.sum_pages<span>页</span></span>
@@ -257,6 +247,8 @@
         </div>
     </div>
 </div>
+
+
 
 
 

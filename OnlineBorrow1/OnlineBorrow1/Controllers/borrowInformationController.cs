@@ -126,7 +126,6 @@ namespace OnlineBorrow1.Controllers
             Paging paging = new Paging(borrowInformations,6,3,pages);
             return View(paging);
         }
-
       
         [Authorize]
         public ActionResult checking()

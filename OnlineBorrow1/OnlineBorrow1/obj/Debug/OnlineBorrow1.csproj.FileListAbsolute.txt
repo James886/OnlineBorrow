@@ -371,7 +371,6 @@ D:\OnlineBorrow1\OnlineBorrow1\bin\zh-Hans\System.Web.Razor.resources.dll
 D:\OnlineBorrow1\OnlineBorrow1\bin\zh-Hans\System.Web.WebPages.resources.dll
 D:\OnlineBorrow1\OnlineBorrow1\bin\zh-Hans\System.Web.WebPages.Deployment.resources.dll
 D:\OnlineBorrow1\OnlineBorrow1\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
-D:\OnlineBorrow1\OnlineBorrow1\obj\Debug\OnlineBorrow1.csprojResolveAssemblyReference.cache
 D:\OnlineBorrow1\OnlineBorrow1\obj\Debug\OnlineBorrow1.csproj.ResolveComReference.cache
 D:\OnlineBorrow1\OnlineBorrow1\obj\Debug\OnlineBorrow1.Migrations.InitialCreate.resources
 D:\OnlineBorrow1\OnlineBorrow1\obj\Debug\OnlineBorrow1.Migrations.ModifyDatabase.resources

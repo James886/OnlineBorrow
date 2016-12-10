@@ -95,7 +95,7 @@ namespace OnlineBorrow1.Controllers
         {
             UserContext userContext = new UserContext();
             User user_ = (from item in userContext.Users
-                          where item.username == user.username && item.password == user.password && item.userCategory == 0
+                          where item.username == user.username && item.password == user.password && item.userCategory != 1
                           select item).FirstOrDefault();
             if (user_ == null)
                 return false;
@@ -122,6 +122,17 @@ namespace OnlineBorrow1.Controllers
             }
             user_nameCookie.Value = user_.username;
             Response.Cookies.Add(user_nameCookie);
+            HttpCookie user_categoryCookie = null;
+            if (Request.Cookies["user_category"] != null)
+            {
+                user_categoryCookie = Request.Cookies["user_category"];
+            }
+            else
+            {
+                user_categoryCookie = new HttpCookie("user_category");
+            }
+            user_categoryCookie.Value = user_.userCategory.ToString();
+            Response.Cookies.Add(user_categoryCookie);
             return true;  
         }
         public ActionResult passwordChanged()

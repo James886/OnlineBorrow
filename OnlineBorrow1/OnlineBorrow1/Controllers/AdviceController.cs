@@ -17,41 +17,32 @@ namespace OnlineBorrow1.Controllers
         // GET: /Advice/
 
         [Authorize]
-        public ActionResult Advice(int pages = 1)
+        public ActionResult Advice(int title = 1,int pages = 1)
         {
 
+            int adviceCategory = 0;
+            adviceCategory = title;
+            HttpCookie adviceCategoryCookie = null;
+            if (Request.Cookies["adviceCategory"] != null)
+            {
+
+                adviceCategoryCookie = Request.Cookies["adviceCategory"];
+            }
+            else
+            {
+                adviceCategoryCookie = new HttpCookie("adviceCategory");
+            }
+            adviceCategoryCookie.Value = adviceCategory.ToString();
+            Response.Cookies.Add(adviceCategoryCookie);
+
+            string title_str = title.ToString();
             AdviceContext adviceContext = new AdviceContext();
-            /*
-            List<Advice> advices = (from item in adviceContext.advices.ToList()
-                                    orderby item.time descending
-                                    select item).ToList();
-             * */
             IEnumerable<Advice> advices_ = from item in adviceContext.advices
+                                           where item.title == title_str
                                            orderby item.time descending
                                            select item;
-
             Paging paging = new Paging(advices_,6,3,pages);
             return View(paging);
-            /*
-            int a = advices.Count;
-            a = (a / 10) + 1;
-            List<Advice> advice = new List<Advice>();
-            if (pages < a)
-            {
-                for (int i = (pages - 1) * 10; i < pages * 10; i++)
-                {
-                    advice.Add(advices[i]);
-                }
-            }
-            if (pages == a)
-            {
-                for (int i = (pages - 1) * 10; i < advices.Count; i++)
-                {
-                    advice.Add(advices[i]);
-                }
-            }
-            return View(advice);
-             * */
         }
 
 

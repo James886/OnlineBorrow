@@ -21,9 +21,6 @@
 <div class="container" style="background-color: white">
     <div class="row clearfix">
         <div class="col-md-12 column">
-            <div style="margin-top: 0px">
-                <img src ="@Url.Content("~/Images/biaoyu.jpg")" style="width:100%" />
-            </div>
             <div class="col-md-12 column" style="margin-top: 20px; padding-top: 0px; margin-left: 0px; padding-left: 0px;">
                 <ul class="pagination" style="float: left; margin-top: 20px; padding-top: 0px; margin-left: 0px; padding-left: 0px;">
 
@@ -116,7 +113,7 @@
                                     </div>
                                 </td>
                                 <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
-                                    <p><span style="float: right">@borrowInformationArray[i].提交时间</span></p>
+                                    <p><span style="text-align:center;">@borrowInformationArray[i].提交时间.ToString("yyyy-MM-dd")</span></p>
                                 </td>
                                 <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
                                     <a href="~/Check/detailCheck?information_id=@borrowInformationArray[i].information_id" type="button" class="btn btn-default btn-link" >审核</a>
@@ -161,7 +158,7 @@
                                     </div>
                                 </td>
                                 <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
-                                    <p><span style="float: right">@borrowInformationArray[i].提交时间</span></p>
+                                    <p><span style="text-align:center;">@borrowInformationArray[i].提交时间.ToString("yyyy-MM-dd")</span></p>
                                 </td>
                                 <td style="padding-bottom: 10px; padding-top: 10px; border-bottom: 2px dashed #ddd; text-align: center">
                                     <p>通过</p>

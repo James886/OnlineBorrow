@@ -53,7 +53,7 @@
             {
                  <form action="@Url.Content("~/borrowInformation/Update1")" method="post">
                     <table class="table table-bordered table-hover " style="border-radius: inherit;border-color:black;">
-                        <caption style="text-align: center; font-size: 30px; color: black; font-weight: bolder">
+                        <caption style="text-align: center; font-size: 25px; color: black; font-weight: bolder">
                             青海大学计算机技术与应用系教学机房借用审批表<br />
                             2016 —— 2017学年度 第一学期      
                         </caption>
@@ -129,44 +129,35 @@
                             <tr>
                                 <td style="text-align:center">借用机房
                                 </td>
-                                <td colspan="2" style="text-align:center">
+                                <td style="text-align:center">
                                     @item.借用机房
                                 </td>
                                 <td style="text-align:center">借用时间
                                 </td>
-                                <td colspan="2" style="text-align:center">
-                                    @item.借用具体时间始----@item.借用具体时间终
+                                <td colspan="3" style="text-align:center">
+                                    @item.借用具体时间始@item.借用具体时间终
                                 </td>
                             </tr>
-                            <tr style="height:150px;">
+                            <tr style="height:125px;">
                                 <td colspan="6" style="text-align:center"> <div style="text-align:left">系实验室管理部负责人意见：</div>
                                 <div style="text-align:center"> @item.负责人意见</div>
                                       <div style="padding-top:80px;text-align:right;padding-right:200px;">负责人签字：</div>
                                 </td>
                             </tr >
-                            <tr style="height:150px;">
+                            <tr style="height:125px;">
                                 <td colspan="6" style="text-align:center"> <div style="text-align:left">院系意见：</div>
                                     <div style="text-align:center"> @item.系领导意见</div>
                                      <div style="padding-top:80px;text-align:right;padding-right:200px;">系领导签字：</div>
-                                </td>
-                                
-                                  
-                               
-                               
-                                
+                                </td>    
                             </tr>
                         </tbody>
                     </table>
-                    
-
                 </form>
             }
             
         </div>
-
-
-        <h3>备注:</h3>
-        <ol>
+        <h4>备注:</h4>
+        <ol style="font-size:initial">
             <li>此申请表由借用人如实逐项填写，报计算机系实验室管理部审批（补课以及党团、班级、学生会、腾讯俱乐部、辩论赛等活动借用情况只需系实验室管理部审核，如遇承办考试、竞赛、讲座、培训、项目活动等特殊情况需报系领导审批）；审批通过后，持本表到计算机系楼门卫处领取相应机房的钥匙；
             </li>
             <li>教室借用，必须遵守计算机系教学机房管理规定，违反规定者，将取消其使用资格，性质严重者，将上报系里处理；
@@ -177,7 +168,7 @@
             </li>
 
         </ol>
-        <p style="text-align: right">系教学实验室联系人：杜正君（13897408428）</p>
+        <p style="text-align: right;font-size:initial">系教学实验室联系人：杜正君（13897408428）</p>
     </div>
     <!--endprint1-->
     <a href="#" style="float: right;color:black;"  onclick=preview(1) ><i class="icon-print icon-3x"></i></a>

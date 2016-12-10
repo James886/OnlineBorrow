@@ -249,6 +249,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="css\font-awesome.css" />
     <Content Include="css\font-awesome.min.css" />
+    <Content Include="css\style.css" />
     <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\.gitignore" />
     <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\css\font-awesome-ie7.css" />
     <Content Include="Font-Awesome-3.2.1\Font-Awesome-3.2.1\css\font-awesome-ie7.min.css" />

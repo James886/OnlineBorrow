@@ -1,12 +1,12 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "实验室课表";
 }
 
-<div class="container" style="border: 1px solid #ddd;background-color:white">
+<div class="container" style="border: 1px solid #ddd; background-color: white">
     <div class="row clearfix">
         <div class="col-md-12 column">
             <div class="form-group" style="padding-top: 10px">
+                <div class="form-group" style="padding-top: 10px; padding-bottom: 60px; border: 2px dashed  #ddd">
                 <label for="inputEmail3" class="col-sm-2 control-label" style="font-size: 20px">课表查询</label>
                 <div class="col-sm-2">
                     <button class="btn btn-default" onclick="myFunction(121)" style="font-size: 20px;">计121</button>
@@ -24,20 +24,17 @@
                     <button class="btn btn-default" onclick="myFunction(321)" style="font-size: 20px">计321</button>
                 </div>
             </div>
+                 </div>
         </div>
-        
-            <div class="col-md-12" style="text-align: center; padding: 20px">
-                <img src ="/Images/121.png" id="schedule" />
-            </div>
-        
+        <div class="col-md-12" style="text-align: center; padding: 20px">
+            <img src="/Images/121.png" id="schedule" />
+        </div>
     </div>
 </div>
-
 <script>
-    function myFunction(path_category)
-    { 
-        var path = "/Images" + "/" +path_category + ".png";
+    function myFunction(path_category) {
+        var path = "/Images" + "/" + path_category + ".png";
         document.getElementById("schedule").setAttribute("src", path);
     }
-    </script>
+</script>
 
