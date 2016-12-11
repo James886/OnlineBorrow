@@ -128,6 +128,7 @@
     <Compile Include="Controllers\PrintController.cs" />
     <Compile Include="Controllers\ScheduleAddOrUpdateController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
+    <Compile Include="Controllers\setWeekController.cs" />
     <Compile Include="Controllers\UserAccountController.cs" />
     <Compile Include="Migrations\201610311511378_InitialCreate.cs" />
     <Compile Include="Migrations\201610311511378_InitialCreate.Designer.cs">
@@ -152,7 +153,9 @@
     <Compile Include="Models\Paging.cs" />
     <Compile Include="Models\schedule.cs" />
     <Compile Include="Models\scheduleContext.cs" />
+    <Compile Include="Models\setWeek.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\setWeekContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\UserContext.cs" />
   </ItemGroup>
@@ -523,6 +526,7 @@
     <Content Include="Views\ScheduleAddOrUpdate\Create.cshtml" />
     <Content Include="Views\ScheduleAddOrUpdate\Edit.cshtml" />
     <Content Include="Views\ScheduleAddOrUpdate\Delete.cshtml" />
+    <Content Include="Views\setWeek\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="assets\bootstrap\fonts\" />

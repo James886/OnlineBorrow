@@ -24,6 +24,11 @@ namespace OnlineBorrow1.Controllers
         [HttpPost]
         public JsonResult CheckSchedule()
         {
+            setWeekContext set_weekContext = new setWeekContext();
+            setWeek set_week = (from item in set_weekContext.set_week
+                               where item.id == 1
+                               select item).FirstOrDefault();
+
             string datetime = "";
             if (Request["借用日期"] == null)
             {
@@ -34,8 +39,7 @@ namespace OnlineBorrow1.Controllers
                 datetime = Request["借用日期"];
             }
             string weekstr = Convert.ToDateTime(datetime).DayOfWeek.ToString();
-            string str1 = "2016-08-22";
-            DateTime dt1 = Convert.ToDateTime(str1);  //这里你要显示几个信息？ 那你在哪里计算？
+            DateTime dt1 = set_week.start_date; //这里你要显示几个信息？ 那你在哪里计算？
             DateTime dt2 = Convert.ToDateTime(datetime);  //为什么两个 dt, 基准应该是8月 那是第一周
             TimeSpan ts = dt2 - dt1;
             int a = Convert.ToInt32(ts.TotalDays);

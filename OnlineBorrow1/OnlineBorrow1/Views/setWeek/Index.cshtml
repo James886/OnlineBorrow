@@ -1,0 +1,28 @@
+﻿@model OnlineBorrow1.Models.setWeek
+
+@{
+    ViewBag.Title = "Index";
+}
+<script src="~/Scripts/request.js"></script>
+
+<div class="container" style="border: 1px solid #ddd; background-color: white">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+
+              
+			<form action="@Url.Content("~/setWeek/save")" style="margin-bottom:200px;" method="post">
+				<div class="form-group">
+					 <label for="inputEmail3" class="col-sm-2 control-label">本学期第一周</label>
+					
+						 <input type="text" name="start_date" id="start_date" style="padding-left:4px;" onfocus="HS_setDate(this)" value="@Model.start_date.ToString("yyyy-MM-d")" />
+					
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						 <button type="submit" class="btn btn-default">修改</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

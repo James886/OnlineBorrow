@@ -1,28 +1,22 @@
 ﻿@model IEnumerable<OnlineBorrow1.Models.lookSchedule>
 @{
     ViewBag.Title = "课表详情";
-    for (int i = 0; i < Model.Count(); i++ )
+    string[,] crru_data = new string[7,10];
+    int i = 0;
+    foreach (var item in Model)
     {
-        
+        crru_data[i,0] = item.第一节;
+        crru_data[i,1] = item.第二节;
+        crru_data[i,2] = item.第三节;
+        crru_data[i,3] = item.第四节;
+        crru_data[i,4] = item.第五节;
+        crru_data[i,5] = item.第六节;
+        crru_data[i,6] = item.第七节;
+        crru_data[i,7] = item.第八节;
+        crru_data[i,8] = item.第九节;
+        crru_data[i, 9] = item.第十节;
+        i++;
     }
-        /*
-        string[][] crru_data = new string[7][];
-        int i = 0;
-        foreach(var item in Model)
-        {
-            crru_data[i][0] = item.第一节.ToString();
-            crru_data[i][1] = item.第二节.ToString();
-            crru_data[i][2] = item.第三节.ToString();
-            crru_data[i][3] = item.第四节.ToString();
-            crru_data[i][4] = item.第五节.ToString();
-            crru_data[i][5] = item.第六节.ToString();
-            crru_data[i][6] = item.第七节.ToString();
-            crru_data[i][7] = item.第八节.ToString();
-            crru_data[i][8] = item.第九节.ToString();
-            crru_data[i][9] = item.第十节.ToString();
-            i++;
-        }
-         * */
 }
 <style>
     th { font-size: 18.7px; border: 1px solid #ddd!important; text-align: center; }
@@ -90,25 +84,25 @@
                             <td class="col-md-1" style="padding-top: 40px">第一大节
                             </td>
                             <td class="col-md-1 font" style="padding: 0">
-                                <input type="text" name="第一大节1" id="第一大节1" />
+                                <input type="text" name="第一大节1" id="第一大节1" value="@crru_data[0,0]"/>
                             </td>
                             <td class="col-md-1 font" style="padding: 0">
-                                <input type="text" name="第一大节2" id="第一大节2"  />
+                                <input type="text" name="第一大节2" id="第一大节2" value="@crru_data[1,0]"/>
                             </td>
                             <td class="col-md-1 font" style="padding: 0">
-                                <input type="text" name="第一大节3" id="第一大节3"  />
+                                <input type="text" name="第一大节3" id="第一大节3" value="@crru_data[2,0]"/>
                             </td>
                             <td class="col-md-1 font" style="padding: 0">
-                                <input type="text" name="第一大节4" id="第一大节4"  />
+                                <input type="text" name="第一大节4" id="第一大节4" value="@crru_data[3,0]"/>
                             </td>
                             <td class="col-md-1 font" style="padding: 0">
-                                <input type="text" name="第一大节5" id="第一大节5"  />
+                                <input type="text" name="第一大节5" id="第一大节5" value="@crru_data[4,0]"/>
                             </td>
                             <td class="col-md-1 font" style="padding: 0">
-                                <input type="text" name="第一大节6" id="第一大节6"  />
+                                <input type="text" name="第一大节6" id="第一大节6" value="@crru_data[5,0]"/>
                             </td>
                             <td class="col-md-1 font" style="padding: 0">
-                                <input type="text" name="第一大节7" id="第一大节7"  />
+                                <input type="text" name="第一大节7" id="第一大节7" value="@crru_data[6,0]"/>
                             </td>
                             <td class="col-md-2" style="padding-top: 20px">第一、二节                           
                             <br />
@@ -119,25 +113,25 @@
                             <td style="padding-top: 40px">第二大节
                             </td>
                             <td class="col-md-1 font" style="padding: 0">
-                                <input type="text" name="第二大节1" id="第二大节1" />
+                                <input type="text" name="第二大节1" id="第二大节1" value="@crru_data[0,2]"/>
                             </td>
                             <td class="col-md-1 font" style="padding: 0">
-                                <input type="text" name="第二大节2" id="第二大节2" />
+                                <input type="text" name="第二大节2" id="第二大节2" value="@crru_data[1,2]"/>
                             </td>
                             <td class="col-md-1 font" style="padding: 0">
-                                <input type="text" name="第二大节3" id="第二大节3" />
+                                <input type="text" name="第二大节3" id="第二大节3" value="@crru_data[2,2]"/>
                             </td>
                             <td class="col-md-1 font" style="padding: 0">
-                                <input type="text" name="第二大节4" id="第二大节4" />
+                                <input type="text" name="第二大节4" id="第二大节4" value="@crru_data[3,2]"/>
                             </td>
                             <td class="col-md-1 font" style="padding: 0">
-                                <input type="text" name="第二大节5" id="第二大节5" />
+                                <input type="text" name="第二大节5" id="第二大节5" value="@crru_data[4,2]"/>
                             </td>
                             <td class="col-md-1 font" style="padding: 0">
-                                <input type="text" name="第二大节6" id="第二大节6" />
+                                <input type="text" name="第二大节6" id="第二大节6" value="@crru_data[5,2]"/>
                             </td>
                             <td class="col-md-1 font" style="padding: 0">
-                                <input type="text" name="第二大节7" id="第二大节7" />
+                                <input type="text" name="第二大节7" id="第二大节7" value="@crru_data[6,2]"/>
                             </td>
                             <td class="col-md-1" style="padding-top: 20px">第三、四节                           
                             <br />
@@ -153,25 +147,25 @@
                             <td style="padding-top: 40px">第三大节
                             </td>
                             <td class="col-md-1 font" style="padding: 0">
-                                <input type="text" name="第三大节1" id="第三大节1" />
+                                <input type="text" name="第三大节1" id="第三大节1" value="@crru_data[0,4]"/>
                             </td>
                             <td class="col-md-1 font" style="padding: 0">
-                                <input type="text" name="第三大节2" id="第三大节2" />
+                                <input type="text" name="第三大节2" id="第三大节2" value="@crru_data[1,4]"/>
                             </td>
                             <td class="col-md-1 font" style="padding: 0">
-                                <input type="text" name="第三大节3" id="第三大节3" />
+                                <input type="text" name="第三大节3" id="第三大节3" value="@crru_data[2,4]"/>
                             </td>
                             <td class="col-md-1 font" style="padding: 0">
-                                <input type="text" name="第三大节4" id="第三大节4" />
+                                <input type="text" name="第三大节4" id="第三大节4" value="@crru_data[3,4]"/>
                             </td>
                             <td class="col-md-1 font" style="padding: 0">
-                                <input type="text" name="第三大节5" id="第三大节5" />
+                                <input type="text" name="第三大节5" id="第三大节5" value="@crru_data[4,4]"/>
                             </td>
                             <td class="col-md-1 font" style="padding: 0">
-                                <input type="text" name="第三大节6" id="第三大节6" />
+                                <input type="text" name="第三大节6" id="第三大节6" value="@crru_data[5,4]"/>
                             </td>
                             <td class="col-md-1 font" style="padding: 0">
-                                <input type="text" name="第三大节7" id="第三大节7" />
+                                <input type="text" name="第三大节7" id="第三大节7" value="@crru_data[6,4]"/>
                             </td>
                             <td class="col-md-1" style="padding-top: 20px">第五、六节                          
                             <br />
@@ -182,25 +176,25 @@
                             <td style="padding-top: 40px">第四大节
                             </td>
                             <td class="col-md-1 font" style="padding: 0">
-                                <input type="text" name="第四大节1" id="第四大节1" />
+                                <input type="text" name="第四大节1" id="第四大节1" value="@crru_data[0,6]"/>
                             </td>
                             <td class="col-md-1 font" style="padding: 0">
-                                <input type="text" name="第四大节2" id="第四大节2" />
+                                <input type="text" name="第四大节2" id="第四大节2" value="@crru_data[1,6]"/>
                             </td>
                             <td class="col-md-1 font" style="padding: 0">
-                                <input type="text" name="第四大节3" id="第四大节3" />
+                                <input type="text" name="第四大节3" id="第四大节3" value="@crru_data[2,6]"/>
                             </td>
                             <td class="col-md-1 font" style="padding: 0">
-                                <input type="text" name="第四大节4" id="第四大节4" />
+                                <input type="text" name="第四大节4" id="第四大节4" value="@crru_data[3,6]"/>
                             </td>
                             <td class="col-md-1 font" style="padding: 0">
-                                <input type="text" name="第四大节5" id="第四大节5" />
+                                <input type="text" name="第四大节5" id="第四大节5" value="@crru_data[4,6]"/>
                             </td>
                             <td class="col-md-1 font" style="padding: 0">
-                                <input type="text" name="第四大节6" id="第四大节6" />
+                                <input type="text" name="第四大节6" id="第四大节6" value="@crru_data[5,6]"/>
                             </td>
                             <td class="col-md-1 font" style="padding: 0">
-                                <input type="text" name="第四大节7" id="第四大节7" />
+                                <input type="text" name="第四大节7" id="第四大节7" value="@crru_data[6,6]"/>
                             </td>
                             <td class="col-md-1" style="padding-top: 20px">第七、八节
                             <br />
@@ -216,25 +210,25 @@
                             <td rowspan="2" style="padding-top: 40px">第五大节
                             </td>
                             <td class="col-md-1 font" style="padding: 0">
-                                <input type="text" name="第五大节1" id="第五大节1" />
+                                <input type="text" name="第五大节1" id="第五大节1" value="@crru_data[0,8]"/>
                             </td>
                             <td class="col-md-1 font" style="padding: 0">
-                                <input type="text" name="第五大节2" id="第五大节2" />
+                                <input type="text" name="第五大节2" id="第五大节2" value="@crru_data[1,8]"/>
                             </td>
                             <td class="col-md-1 font" style="padding: 0">
-                                <input type="text" name="第五大节3" id="第五大节3" />
+                                <input type="text" name="第五大节3" id="第五大节3" value="@crru_data[2,8]"/>
                             </td>
                             <td class="col-md-1 font" style="padding: 0">
-                                <input type="text" name="第五大节4" id="第五大节4" />
+                                <input type="text" name="第五大节4" id="第五大节4" value="@crru_data[3,8]"/>
                             </td>
                             <td class="col-md-1 font" style="padding: 0">
-                                <input type="text" name="第五大节5" id="第五大节5" />
+                                <input type="text" name="第五大节5" id="第五大节5" value="@crru_data[4,8]"/>
                             </td>
                             <td class="col-md-1 font" style="padding: 0">
-                                <input type="text" name="第五大节6" id="第五大节6" />
+                                <input type="text" name="第五大节6" id="第五大节6" value="@crru_data[5,8]"/>
                             </td>
                             <td class="col-md-1 font" style="padding: 0">
-                                <input type="text" name="第五大节7" id="第五大节7" />
+                                <input type="text" name="第五大节7" id="第五大节7" value="@crru_data[6,8]"/>
                             </td>
                             <td class="col-md-1" style="padding-top: 20px">第九、十节
                             <br />

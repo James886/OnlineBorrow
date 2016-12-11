@@ -298,7 +298,6 @@ E:\Git\newrepo\OnlineBorrow1\OnlineBorrow1\bin\zh-Hans\System.Web.Razor.resource
 E:\Git\newrepo\OnlineBorrow1\OnlineBorrow1\bin\zh-Hans\System.Web.WebPages.resources.dll
 E:\Git\newrepo\OnlineBorrow1\OnlineBorrow1\bin\zh-Hans\System.Web.WebPages.Deployment.resources.dll
 E:\Git\newrepo\OnlineBorrow1\OnlineBorrow1\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
-E:\Git\newrepo\OnlineBorrow1\OnlineBorrow1\obj\Debug\OnlineBorrow1.csprojResolveAssemblyReference.cache
 E:\Git\newrepo\OnlineBorrow1\OnlineBorrow1\obj\Debug\OnlineBorrow1.csproj.ResolveComReference.cache
 E:\Git\newrepo\OnlineBorrow1\OnlineBorrow1\obj\Debug\OnlineBorrow1.Migrations.InitialCreate.resources
 E:\Git\newrepo\OnlineBorrow1\OnlineBorrow1\obj\Debug\OnlineBorrow1.Migrations.ModifyDatabase.resources
@@ -377,3 +376,4 @@ D:\OnlineBorrow1\OnlineBorrow1\obj\Debug\OnlineBorrow1.Migrations.ModifyDatabase
 D:\OnlineBorrow1\OnlineBorrow1\obj\Debug\OnlineBorrow1.csproj.GenerateResource.Cache
 D:\OnlineBorrow1\OnlineBorrow1\obj\Debug\OnlineBorrow1.dll
 D:\OnlineBorrow1\OnlineBorrow1\obj\Debug\OnlineBorrow1.pdb
+E:\Git\newrepo\OnlineBorrow1\OnlineBorrow1\obj\Debug\OnlineBorrow1.csprojResolveAssemblyReference.cache
